@@ -22,18 +22,6 @@ function CreateUser() {
             email: email,
             password: password,
         };
-
-    //     fetch("http://159.65.21.42:9000/register", {
-    //         method: "POST",
-    //         headers: { "Content-Type": "application/json" },
-    //         body: JSON.stringify(user),
-    //     })
-    //         .then((resp) => resp.json())
-    //         .then((data) => {
-    //             alert("User created successfully")
-    //             console.log(data);
-    //         })
-    //         .catch((err) => console.log(err));
     }
 
     return (
@@ -45,23 +33,23 @@ function CreateUser() {
                     <div className="header">
                         <h2>Create User</h2>
                     </div>
-                    <form className="form" onSubmit={handleCreate}>
-                        <div className="form-group">
+                    <form className="admin-form" onSubmit={handleCreate}>
+                        <div className="admin-form-group">
                             <label htmlFor="">Name</label>
                             <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
                             {err && name === "" ? <span>Name Required</span> : null}
                         </div>
-                        <div className="form-group">
+                        <div className="admin-form-group">
                             <label htmlFor="">Phone Number</label>
                             <input type="text" value={phone} onChange={(e) => setPhone(e.target.value)} />
                             {err && phone === "" ? <span>Phone Required</span> : null}
                         </div>
-                        <div className="form-group">
+                        <div className="admin-form-group">
                             <label htmlFor="">Email</label>
                             <input type="text" value={email} onChange={(e) => setEmail(e.target.value)} />
                             {err && email === "" ? <span>Email Required</span> : null}
                         </div>
-                        <div className="form-group">
+                        <div className="admin-form-group">
                             <label htmlFor="">Password</label>
                             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
                             {err && password === "" ? <span>Password Required</span> : null}

@@ -1,13 +1,14 @@
 import { IoPerson, IoNotificationsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
 import logo from "./images/vector2.svg";
+import BookingStatus from "../pages/BookingStatus";
 
 function Navigation() {
     return (
         <div>
             <nav>
                 <div class="navbar">
-                    <div class="dp-logo">
+                    <div class="home-logo">
                         <Link to="/">
                             {/* <img src={logo} alt="" /> */}
                             <h1>Logo</h1>
@@ -19,6 +20,7 @@ function Navigation() {
                             <IoPerson />
                         </Link>
                         <Link className="nav-person">Admin</Link>
+                        <Link className="nav-person" to="/status">Status</Link>
                     </div>
                 </div>
             </nav>

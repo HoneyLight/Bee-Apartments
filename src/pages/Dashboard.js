@@ -1,54 +1,11 @@
 import Sidebar from "../components/Sidebar";
 import Navigation from "../components/Navigation";
 import { IoPeople, IoCart, IoHomeOutline, IoHomeSharp } from "react-icons/io5";
-import { useState, useEffect } from "react";
+import { CgProfile } from "react-icons/cg";
+// import { useState, useEffect } from "react";
+
 
 function Dashboard() {
-
-    // const [products, setProducts] = useState([]);
-    // const [users, setUsers] = useState([]);
-    // const [cart, setCart] = useState([]);
-
-    // const getUsers = () => {
-    //     fetch("http://159.65.21.42:9000/users")
-    //         .then((resp) => resp.json())
-    //         .then((result) => {
-    //             setUsers(result);
-    //             console.log(result);
-    //         })
-    //         .catch((err) => console.log((err.message)));
-    // }
-
-    // useEffect(() => {
-    //     getUsers();
-    // }, []);
-
-    // const getProduct = (category) => {
-    //     fetch("http://159.65.21.42:9000/products")
-    //         .then((output) => output.json())
-    //         .then((resp) => {
-    //             const getCategory = resp.filter((result) => result.category === category)
-    //             setProducts(getCategory);
-    //             console.log(getCategory);
-    //         })
-    //         .catch((err) => console.log(err.message));
-    // }
-
-    // useEffect(() => {
-    //     getProduct("DPDebby")
-    // }, []);
-
-    // const cartinfo = localStorage.getItem("cartstore");
-
-    // const getCart = () => {
-    //     if(cartinfo) {
-    //         let cartLength = JSON.parse(cartinfo);
-    //         setCart(cartLength);
-    //     }
-    // }
-    // useEffect (() => {
-    //     getCart();
-    // }, [])
 
     return (
         <div>
@@ -62,22 +19,31 @@ function Dashboard() {
                                 <IoHomeSharp />
                             </div>
                             <div>
-                                <h5>Total Products</h5>
+                                <h5>Total Property</h5>
                                 <h4 id="totalPrd">0</h4>
                             </div>
                         </div>
                         <div className="box">
                             <div className="svg2">
-                                <IoCart />
+                                <IoPeople />
                             </div>
                             <div>
                                 <h5>Total Agents</h5>
                                 <h4>0</h4>
                             </div>
                         </div>
-                        <div className="box flex">
+                        <div className="box">
                             <div className="svg3">
-                                <IoPeople />
+                                <IoCart />
+                            </div>
+                            <div>
+                                <h5>Items in Wishlist</h5>
+                                <h4>0</h4>
+                            </div>
+                        </div>
+                        <div className="box flex">
+                            <div className="svg4">
+                                <CgProfile />
                             </div>
                             <div>
                                 <h5>Total Users</h5>

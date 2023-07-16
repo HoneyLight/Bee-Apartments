@@ -8,6 +8,7 @@ import ProductView from "./pages/ProductView";
 import UserView from "./pages/UserView";
 import AgentView from "./pages/AgentView";
 import CreateAgent from "./pages/CreateAgent";
+import BookingStatus from './pages/BookingStatus';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route path="/user-view" element={<UserView />} />
         <Route path="/create-agent" element={<CreateAgent />} />
         <Route path="/agent-view" element={<AgentView />} />
+        <Route path="/status" element={<BookingStatus />} />
       </Routes>
     </BrowserRouter>
   );
