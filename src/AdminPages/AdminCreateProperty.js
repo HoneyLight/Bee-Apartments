@@ -1,8 +1,9 @@
-import Navigation from "../components/Navigation";
-import Sidebar from "../components/Sidebar";
+import "./Admin.css";
+import AdminNavigation from "../components/AdminNavigation";
+import AdminSidebar from "../components/AdminSidebar";
 import { useState } from "react";
 
-function CreateProduct() {
+function AdminCreateProduct() {
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [category, setCategory] = useState("");
@@ -19,13 +20,11 @@ function CreateProduct() {
         }
     }
 
-    return(
-
-        
+    return(        
         <div>
-            <Navigation/>
+            <AdminNavigation/>
             <div className="admin-dashboard">
-                <Sidebar/>
+                <AdminSidebar/>
             <div className="main-dash create-prd">
                 <div className="header">
                     <h2>Create Property</h2>
@@ -72,4 +71,4 @@ function CreateProduct() {
     )
 }
 
-export default CreateProduct;
+export default AdminCreateProduct;

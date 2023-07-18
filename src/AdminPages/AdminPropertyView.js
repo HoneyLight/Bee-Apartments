@@ -1,51 +1,17 @@
-import { useState, useEffect } from "react";
-import Navigation from "../components/Navigation";
-import Sidebar from "../components/Sidebar";
+import "./Admin.css";
+import AdminNavigation from "../components/AdminNavigation";
+import AdminSidebar from "../components/AdminSidebar";
 import Btn from "../components/Btn";
 import img1 from "../components/images/home.jpg";
 import img2 from "../components/images/home2.jpg";
 
-function ProductView() {
-
-    // const [products, setProducts] = useState([]);
-
-    // const getProduct = (category) => {
-    //     fetch("http://159.65.21.42:9000/products")
-    //         .then((output) => output.json())
-    //         .then((resp) => {
-    //             const getCategory = resp.filter((result) => result.category === category)
-    //             setProducts(getCategory);
-    //             console.log(getCategory);
-    //         })
-    //         .catch((err) => console.log(err.message));
-    // }
-
-    // useEffect(() => {
-    //     getProduct("DPDebby")
-    // }, [])
-
-
-    // const editPrd = (id) => {
-
-    // }
-
-    // const deletePrd = (id) => {
-    //     if (window.confirm("Do you want to delete?")) {
-    //         fetch(`http://159.65.21.42:9000/product/${id}`, {
-    //             method : "DELETE",
-    //         }).then((resp) => {
-    //             alert("Delete Successful");
-    //             // window.location.reload();
-    //         }).catch((err) => console.log(err.message))
-    //     }
-    // };
-
+function AdminPropertyView() {
 
     return (
         <div>
-            <Navigation />
+            <AdminNavigation />
             <div className="admin-dashboard">
-                <Sidebar />
+                <AdminSidebar />
                 <div className="main-dash">
                     <div className="header">
                         <h2>Apartments</h2>
@@ -80,4 +46,4 @@ function ProductView() {
     )
 }
 
-export default ProductView;
+export default AdminPropertyView;

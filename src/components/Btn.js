@@ -5,7 +5,6 @@ function Btn({title, bgColor, color, border, width, clickFunc}) {
         borderRadius: "5px",
         cursor: "pointer",
         padding: "15px 20px",
-        // we are saying if the person put a border, then he can give which ever he wants but if the person doesn't, give him a default border style of 'none' using the ternary operator '?'.
         border: border ? border : "none",
         outline: "none",
         display: "inline-block",

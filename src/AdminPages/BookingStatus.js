@@ -16,8 +16,6 @@ function BookingStatus() {
                     <div className="status-btns">
                         <button className="reschedule">Reschedule Appointment</button>
                         <button className="cancel">Cancel Appointment</button>
-                        {/* <Btn title="" bgColor="rgb(125, 75, 28)" />
-                    <Btn title="Delete" bgColor="#ac0d0d" /> */}
                     </div>
                 </div>
             </div>

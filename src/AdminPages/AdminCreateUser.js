@@ -1,9 +1,10 @@
-import Navigation from "../components/Navigation";
-import Sidebar from "../components/Sidebar";
+import "./Admin.css";
+import AdminNavigation from "../components/AdminNavigation";
+import AdminSidebar from "../components/AdminSidebar";
 import { useState } from "react";
 
 
-function CreateUser() {
+function AdminCreateUser() {
     const [name, setName] = useState("");
     const [phone, setPhone] = useState("");
     const [email, setEmail] = useState("");
@@ -26,9 +27,9 @@ function CreateUser() {
 
     return (
         <div>
-            <Navigation />
+            <AdminNavigation />
             <div className="admin-dashboard">
-                <Sidebar />
+                <AdminSidebar />
                 <div className="main-dash create-prd">
                     <div className="header">
                         <h2>Create User</h2>
@@ -62,4 +63,4 @@ function CreateUser() {
     )
 }
 
-export default CreateUser;
+export default AdminCreateUser;

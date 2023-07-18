@@ -1,17 +1,17 @@
-import Sidebar from "../components/Sidebar";
-import Navigation from "../components/Navigation";
+import "./Admin.css";
+import AdminNavigation from "../components/AdminNavigation";
+import AdminSidebar from "../components/AdminSidebar";
 import { IoPeople, IoCart, IoHomeOutline, IoHomeSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
-// import { useState, useEffect } from "react";
 
 
-function Dashboard() {
+function AdminDashboard() {
 
     return (
         <div>
-            <Navigation />
+            <AdminNavigation />
             <div className="admin-dashboard">
-                <Sidebar />
+                <AdminSidebar />
                 <div className="main-dash">
                     <div className="section1">
                         <div className="box">
@@ -75,4 +75,4 @@ function Dashboard() {
     )
 }
 
-export default Dashboard;
+export default AdminDashboard;

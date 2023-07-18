@@ -1,9 +1,7 @@
 import { IoPerson, IoNotificationsOutline } from "react-icons/io5";
 import { Link } from "react-router-dom";
-import logo from "./images/vector2.svg";
-import BookingStatus from "../pages/BookingStatus";
 
-function Navigation() {
+function AdminNavigation() {
     return (
         <div>
             <nav>
@@ -28,5 +26,5 @@ function Navigation() {
     )
 }
 
-export default Navigation;
+export default AdminNavigation;
 
