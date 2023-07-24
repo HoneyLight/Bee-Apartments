@@ -1,0 +1,142 @@
+.shopsection{
+    /* width: 95%; */
+    /* margin: auto; */
+    background-color: #181D24;
+    height: 2000px;
+}
+
+
+.shop-property{
+    width: 95%;
+    margin: auto;
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+
+}
+.shop-property-row{
+  background-color: white;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    height: 420px;
+}
+.shop-property-row p, h2, h3{
+    margin-left: 10px;
+}
+.shop-property-row h2{
+    line-height: 1.7;
+}
+.shop-property-row h4{
+    color:   #d3d3d2;
+}
+.shop-property img{
+    width: 100%;
+    border-radius: 10px;   
+}
+.sell{
+    background-color: #181D24;
+    color: white;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    position: absolute;
+    width:4%;
+    height: 20px;
+    font-size: 18px;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    margin-left: -1px;
+    margin-top: -200px;
+}
+.wishlist{
+    background-color: #181D24;
+    color: white;
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
+    position: absolute;
+    width:3%;
+    height: 20px;
+    font-size: 18px;
+    text-align: center;
+    align-items: center;
+    padding: 8px;
+    margin-left: 365px;
+    margin-top: -200px;
+}
+.shop-icons{
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+    align-items: center;
+    margin-top: 10px;
+}
+.shop-icons img{
+width: 50%;
+}
+
+.resize-container{
+    margin-left: 50px;
+    display: flex;
+}
+.resize-icon{
+    font-size: 30px;
+    margin-left: 80px;
+}
+.browse-more-properties{
+    text-align: center;
+    align-items: center;
+    margin-bottom: 30px;
+
+}
+.browse-more-properties button{
+    width: 25%;
+    height: 45px;
+    font-size: 18px;
+    background-color: #AC835D;
+    color: white;
+    border: none;
+    border-radius: 10px;
+
+}
+.modern-spaces-container{
+    display: flex;
+    background-color: white;
+    height: 520px;
+    width: 94%;
+    margin: auto;
+  
+}
+.background-colour{
+    background-color: #AC835D;
+    height: 320px;
+    width: 500px;
+    margin-top: 120px;
+    /* margin-left: 40px; */
+}
+.modern-spaces-container img{
+width: 40%;
+position: absolute;
+margin-left: -200px;
+margin-top: -380px;
+
+}
+.colum1{
+    margin-left: 60px;
+}
+.colum2{
+    margin-left: 50px;
+    text-align: start;
+    margin-left: 140px;
+    margin-top: 50px;
+}
+.our-choice-h1{
+    font-size: 50px;
+    color: #AC835D;
+    width: 95%;
+    margin: auto;
+    margin-bottom: 20px;
+}
+.shop-link{
+    color: black;
+    text-decoration: none;
+}

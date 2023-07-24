@@ -1,0 +1,44 @@
+.Navigation-container{
+    background-color: #181D24;
+    height: 100px;
+    width: 100%;
+    position: fixed;
+    z-index: 150;
+}
+.main-navigation {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+    margin: auto;
+    margin-top: -50px;
+    text-align: center;
+    align-items: center;
+    /* position: fixed; */
+}
+
+.main-navigation li {
+    list-style: none;
+    color: white;
+}
+
+.main-navigation li button {
+    background-color: #AC835D;
+    width: 200px;
+    height: 40px;
+    border-radius: 5px;
+    border: none;
+    color: white;
+    text-align: center;
+    align-items: center;
+    margin-top: -10px;
+}
+
+.call-icon {
+    color: #AC835D;
+}
+
+.main-navigation li img {
+    width: 100%;
+    /* margin-left: 40px; */
+    /* position: relative; */
+}

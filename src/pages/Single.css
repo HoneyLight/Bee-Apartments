@@ -1,0 +1,192 @@
+.container-single-page{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #181D24;
+    color: rgb(241, 239, 234);
+}
+.property-bg{
+    width: 100%;
+  margin-top: 40px;
+    display: flex;
+    margin-bottom: 50px;
+  }
+  .property-left{
+    margin-left: 60px;
+    width: 58%;
+  }
+  .property-desc{
+    border-bottom: 1px solid  #4A4847;
+    margin-bottom: 20px;
+  }
+  .property-desc p{
+    /* border-top: 1px solid rgb(245, 212, 150); */
+    border-bottom: 1px solid  #4A4847;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .prop-features{
+    border-bottom: 1px solid  #4A4847;
+    margin-bottom: 20px;
+  }
+  .prop-features p{
+    /* border-top: 1px solid rgb(245, 212, 150); */
+    border-bottom: 1px solid  #4A4847;
+    padding-top: 20px;
+    padding-bottom: 20px;
+  }
+  .prop-details-inner{
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 20px;
+  }
+  .prop-details-left{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+  }
+  .prop-details-left div{
+    line-height: 2;
+    justify-content: space-between;
+  }
+  .prop-details-right{
+    display: flex;
+    justify-content: space-between;
+    width: 40%;
+  }
+  .prop-details-right div{
+    line-height: 2;
+    justify-content: space-between;
+  }
+  .prop-details{
+    border-bottom: 1px solid ;
+  }
+  /* RIGHT SIDE */
+  .property-right{
+    width: 35%;
+    margin-right: 60px;
+    margin-left: 45px;
+   
+  }
+  .agent{
+    text-align: left;
+   
+    border-bottom: 1px solid  #4A4847;
+  }
+
+  .agent-details p{
+    margin-left: 10px;
+  }
+  .agent-numbers{
+    display: flex;
+    justify-content: space-between;
+  }
+  .agent-numbers div{
+    margin-left: 15px;
+    margin-right: 15px;
+    line-height: 3;
+  }
+  .agent button{
+    background-color: #AC835D;
+    border-bottom: 1px solid  #4A4847;
+    padding: 15px 60px;
+    color: white;
+    width: 90%;
+    cursor: pointer;
+    border: none;
+    margin-left: 11px;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+  .schedule-tour{
+    margin-top: 20px;
+    border: 1px solid;
+  }
+  .schedule-details{
+    margin: 15px;
+  }
+  .enquiry-form{
+    width: 100%;
+    line-height: 3;
+    outline: transparent;
+  }
+  .enquiry-form div{
+    margin: 10px;
+  }
+  .enquiry-form input{
+    width: 90%;
+    margin: 0 auto;
+    padding: 10px;
+  }
+  .enquiry-form select{
+    width: 95%;
+    margin: 0 auto;
+    padding: 10px;
+    /* margin-left: 10px; */
+  }
+  .enquiry-form textarea{
+    width: 95%;
+    margin: 0 auto;
+  }
+  .enquiry-form button{
+    background-color: #AC835D;
+    border-bottom: 1px solid  #4A4847;
+    padding: 15px 60px;
+    color: white;
+    width: 90%;
+    cursor: pointer;
+    border: none;
+    margin-left: 11px;
+    margin-bottom: 20px;
+    font-size: 15px;
+  }
+
+  /* SinglePage Component Css */
+.SinglePage{
+  padding-top: 85px;
+  width: 100%;
+  height: 650px;
+  background-color: transparent;
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  gap: 2px;
+}
+
+.SinglePage .col:nth-of-type(1){
+  width: 95%;
+  margin: 0 auto;
+  height: 100%;
+  padding: 20px;
+  
+}
+
+.SinglePage .col:nth-of-type(1) img{
+  width: 100%;
+  height: 99%;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+.SinglePage .col:nth-of-type(2){
+  width: 95%;
+  margin: 0 auto;
+  height: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+  padding-right: 20px;
+}
+
+.SinglePage .col:nth-of-type(2) div{
+  width: 100%;
+  margin-top: 0;
+}
+
+.SinglePage .col:nth-of-type(2) img{
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  margin-top: 20px;
+  border-radius: 10px;
+}
