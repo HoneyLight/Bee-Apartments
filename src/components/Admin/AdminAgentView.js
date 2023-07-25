@@ -1,9 +1,27 @@
 import "./Admin.css";
 import AdminNavigation from "./AdminNavigation";
 import AdminSidebar from "./AdminSidebar";
+import { useState } from "react";
 // import Btn from "../components/Btn";
 
 function AdminAgentView() {
+    const [agent, setAgent] = useState([]);
+   
+
+    let getToken = localStorage.getItem("agentToken");
+
+    fetch("http://property.reworkstaging.name.ng/v1/agents", {
+        method: "GET",
+        headers: {"Content-Type" : "application/json", "authorization": `Bearer ${getToken}`},
+    })
+    .then((resp) => resp.json())
+    .then((data) => {
+        setAgent(data);
+    }).catch((err) => {
+        console.log(err.message)
+    });
+
+
     return (
         <div>
             <AdminNavigation />
@@ -22,17 +40,21 @@ function AdminAgentView() {
                             <th>Password</th>
                             <th>Action</th>
                         </tr>
+                        {
+                            agent && agent.map((data, index) => (
                         <tr>
-                            <td>1</td>
-                            <td>Debby Inyang</td>
-                            <td>debbyinyang@gmail.com</td>
-                            <td>09056784567</td>
-                            <td>0000</td>
+                            <td>{index + 1}</td>
+                            <td>{data.full_name}</td>
+                            <td>{data.email}</td>
+                            <td>{data.phone}</td>
+                            <td>{data.password}</td>
                             <td>
                                 {/* <Btn title="Edit" bgColor="rgb(125, 75, 28)" /> */}
                                 {/* <Btn title="Delete" bgColor="#ac0d0d" /> */}
                             </td>
                         </tr>
+                            ))
+                        }
 
                     </table>
 

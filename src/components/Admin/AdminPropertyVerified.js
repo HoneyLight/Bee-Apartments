@@ -1,9 +1,7 @@
 import "./Admin.css";
 import AdminNavigation from "./AdminNavigation";
 import AdminSidebar from "./AdminSidebar";
-// import Btn from "../components/Btn";
 import img1 from "../image/home.jpg";
-import img2 from "../image/home2.jpg";
 import { useState } from "react";
 import { useEffect } from "react";
 
@@ -15,8 +13,11 @@ function AdminPropertyVerified() {
 
     useEffect(()=>{
         fetch("http://property.reworkstaging.name.ng/v1/properties?merchant=64bd8c6cec5946cdadd37736&verified=true", {
-            // method: "GET",
-            headers:{'Content-Type' : 'application/json', 'authorization': `Bearer ${getToken}`}
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken}`
+            },
         })
         .then((resp)=> resp.json())
         .then((output)=> {
@@ -33,7 +34,8 @@ function AdminPropertyVerified() {
     const deleteProperty= (id)=>{
       fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`,{
         method:"DELETE",
-        headers:{"authorization" : `Bearer ${merchantToken}`}
+        headers:{'Content-Type': 'application/json',
+        'Authorization': `Bearer ${merchantToken}`}
       })
       .then((resp)=> resp.json())
       .then((data)=>{
@@ -41,7 +43,7 @@ function AdminPropertyVerified() {
         setVerified(updateDelete)
         console.log(data)
       })
-      .catch((err)=> err.message)
+      .catch((err) => err.message)
     }
     
 
@@ -57,7 +59,7 @@ function AdminPropertyVerified() {
                     </div>
                     <div className="product-menu">
                         <div className="products">
-                            {
+                            {g
                                 verified && verified.map((data) => (
                                     <div className="product">
                                         <img src={img1} alt="Product" />
