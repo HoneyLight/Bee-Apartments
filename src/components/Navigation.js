@@ -1,5 +1,5 @@
 import './Navigation.css'
-import { IoCall, IoLocationOutline } from "react-icons/io5";
+import { IoCall, IoLocationOutline, IoStarOutline } from "react-icons/io5";
 import bg from "./image/bg.png"
 import { Link } from 'react-router-dom';
 
@@ -19,7 +19,7 @@ function Navigation() {
                     <Link to='/AppointmentStatus'>
                     <li>APARTMENTS</li>
                     </Link>
-                    <li>BLOG</li>
+                    <li><IoStarOutline />1</li>
                     <li><IoCall className='call-icon' /> CALL +234 906 3438 923</li>
                    <Link to="/Signup">
                    <li><button>REGISTER</button></li>

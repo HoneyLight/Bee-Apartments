@@ -1,8 +1,10 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 function Signup(){
-    const [username, setUsername] = useState("");
+    const [firstname, setFirstname] = useState("");
+    const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
+    const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [repeat, setRepeat] = useState("");
     const [owner, setOwner] = useState("");
@@ -12,10 +14,31 @@ function Signup(){
    
     const handleSubmit = (e) => {
        e.preventDefault();
-       if (  username === "" ||  email === "" ||  password === ""  || repeat === ""  || owner === "" ){
+       if (  firstname === "" || lastname === "" ||  email === "" ||  password === ""  || repeat === ""  || owner === "" ){
            setErr (true);
           return;
        }
+
+       let user = {
+        first_name: firstname,
+        last_name: lastname,
+        email: email,
+        phone: phone,
+        password: password,
+       }
+
+       let getToken = localStorage.getItem("merchantToken");
+
+        fetch("http://property.reworkstaging.name.ng/v1/users", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json", "authorization": `Bearer ${getToken}`},
+            body: JSON.stringify(user),
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            console.log(data);
+            alert("You have registered Successfully");
+        }).catch((err) => (err.message))
 
 }
 
@@ -26,8 +49,12 @@ function Signup(){
          <h2>Register</h2>
             <div className="form-grid">
             <div className="form-group"> 
-                 <input type="text" value={username} placeholder="User Name*" onChange={(e) => setUsername(e.target.value)} />
-                 {err === true && username === "" ? <span>Username is Required</span> : null}
+                 <input type="text" value={firstname} placeholder="First Name*" onChange={(e) => setFirstname(e.target.value)} />
+                 {err === true && firstname === "" ? <span>Firstname is Required</span> : null}
+             </div>
+            <div className="form-group"> 
+                 <input type="text" value={lastname} placeholder="Last Name*" onChange={(e) => setLastname(e.target.value)} />
+                 {err === true && lastname === "" ? <span>Lastname is Required</span> : null}
              </div>
 
              <div className="form-group"> 
@@ -36,18 +63,23 @@ function Signup(){
              </div>
             </div>
              <div className="form-group"> 
+                 <input type="text" value={phone} placeholder="Phone Number*" onChange={(e) => setPhone(e.target.value)} />
+                 {err === true && phone === "" ? <span> Phone number is Required</span> : null}
+             </div>
+             <div className="form-group"> 
                  <input type="password" value={password} placeholder="Password*" onChange={(e) => setPassword(e.target.value)} />
                  {err === true && password === "" ? <span> password is Required</span> : null}
              </div>
 
              <div className="form-group"> 
                  <input type="password" value={repeat} placeholder="Repeat Password*" onChange={(e) => setRepeat(e.target.value)} />
-                 {err === true && repeat === "" ? <span>Repeat is Required</span> : null}
+                 {err === true && repeat === "" ? <span>Repeat password is Required</span> : null}
              </div>
 
             <div className="form-group">      
               <select value={owner} placeholder="Owner/Buyer*" onChange={(e) => setOwner(e.target.value)} > 
-                <option value="Select">Owner/Buyer</option>               
+              <option value="">select</option>
+                <option value="Owner/Buyer">Owner/Buyer</option>               
                 <option value="Agency">Agency</option>
                 </select>
                 {err === true && owner === "" ? <span>Required</span> : null}

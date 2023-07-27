@@ -3,9 +3,45 @@ import AdminNavigation from "./AdminNavigation";
 import AdminSidebar from "./AdminSidebar";
 import { IoPeople, IoCart, IoHomeOutline, IoHomeSharp } from "react-icons/io5";
 import { CgProfile } from "react-icons/cg";
+import { useState, useEffect } from "react";
 
 
 function AdminDashboard() {
+    const [agent, setAgent] = useState([]);
+    const [verified, setVerified]= useState("");
+   
+
+    let getToken = localStorage.getItem("merchantToken");
+
+    fetch("http://property.reworkstaging.name.ng/v1/merchants/agents", {
+        method: "GET",
+        headers: {"Content-Type" : "application/json", "authorization": `Bearer ${getToken}`},
+    })
+    .then((resp) => resp.json())
+    .then((data) => {
+        setAgent(data.data);
+    }).catch((err) => {
+        console.log(err.message)
+    });
+
+
+    useEffect(()=>{
+        fetch("http://property.reworkstaging.name.ng/v1/properties?merchant=64bd8c6cec5946cdadd37736&verified", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken}`
+            },
+        })
+        .then((resp)=> resp.json())
+        .then((output)=> {
+            setVerified(output.data);
+            console.log(output.data);
+        })
+        .catch((err)=>{
+            console.log(err.message)
+        })
+    },[])
 
     return (
         <div>
@@ -20,7 +56,7 @@ function AdminDashboard() {
                             </div>
                             <div>
                                 <h5>Total Property</h5>
-                                <h4 id="totalPrd">0</h4>
+                                <h4 id="totalPrd">{verified.length}</h4>
                             </div>
                         </div>
                         <div className="box">
@@ -29,7 +65,7 @@ function AdminDashboard() {
                             </div>
                             <div>
                                 <h5>Total Agents</h5>
-                                <h4>0</h4>
+                                <h4>{agent.length}</h4>
                             </div>
                         </div>
                         <div className="box">
@@ -55,18 +91,22 @@ function AdminDashboard() {
                         <table className="table">
                             <tr>
                                 <th>S/No</th>
-                                <th>Product Name</th>
-                                <th>Product Price</th>
-                                <th>Product Category</th>
-                                <th>Product Description</th>
+                                <th>Property Name</th>
+                                <th>Property Price</th>
+                                <th>Property Category</th>
+                                <th>Property Country</th>
                             </tr>
+                            {
+                                verified && verified.map((item, i) => (
                             <tr>
-                                <td>1</td>
-                                <td>Beach Home</td>
-                                <td>₦1,000,000,000</td>
-                                <td>Bee</td>
-                                <td>A Luxury Home</td>
+                                <td>{i + 1}</td>
+                                <td>{item.name}</td>
+                                <td>₦{item.price}</td>
+                                <td>{item.category}</td>
+                                <td>{item.country}</td>
                             </tr>
+                                ))
+                            }
                         </table>
                     </div>
                 </div>

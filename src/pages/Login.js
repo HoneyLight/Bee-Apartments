@@ -1,17 +1,36 @@
 import { IoLogoGoogle, IoLogoTwitter, IoLogoFacebook } from "react-icons/io5";
 import { useState } from "react";
 import { Link } from "react-router-dom";
+
 function Login() {
-    const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [err, setErr] = useState(false);
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (username === "" || password === "") {
+        if (email === "" || password === "") {
             setErr(true);
             return;
         }
+
+        let userLogin = {
+            email: email,
+            password: password,
+        };
+
+        fetch("http://property.reworkstaging.name.ng/v1/auth/login", {
+            method: "POST",
+            headers: {"Content-Type" : "application/json"},
+            body: JSON.stringify(userLogin),
+        })
+        .then((resp) => resp.json())
+        .then((data) => {
+            let getToken = data.data.token;
+            localStorage.setItem("userToken", getToken);
+            console.log(data);
+            alert("You have successfully Logged in")
+        }).catch((err) => (err.message));
 
     }
     return (
@@ -20,8 +39,8 @@ function Login() {
                 <h2>Login</h2>
                 <div className="form-grid">
                     <div className="form-group">
-                        <input type="text" value={username} placeholder="User Name*" onChange={(e) => setUsername(e.target.value)} />
-                        {err === true && username === "" ? <span>Username is Required</span> : null}
+                        <input type="text" value={email} placeholder="Email*" onChange={(e) => setEmail(e.target.value)} />
+                        {err === true && email === "" ? <span>Email is Required</span> : null}
                     </div>
                 </div>
                 <div className="form-group">

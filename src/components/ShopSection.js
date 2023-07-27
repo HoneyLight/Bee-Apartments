@@ -2,9 +2,6 @@ import "./ShopSection.css"
 import { useState } from "react";
 import { IoLocationOutline, IoStarOutline, IoBedOutline } from "react-icons/io5";
 import { TbResize } from "react-icons/tb";
-import a1 from "./image/a1.jpg";
-import a2 from "./image/a2.jpg";
-import a3 from "./image/a3.jpg";
 import land from "./image/land.jpeg";
 import bath from "./image/bath.png";
 import bed from "./image/bed.png";
@@ -42,7 +39,7 @@ function ShopSection() {
                             <div className="shop-property-row">
                                 <img src={item.image} alt="" />
                                 <h5 className="sell">{item.type}</h5>
-                                <h5 className="wishlist"><IoStarOutline /></h5>
+                                <h5 className="wishlist"><Link to=""><IoStarOutline /></Link></h5>
                                 <p><IoLocationOutline />{item.name}</p>
                                 <h2>{item.category}</h2>
                                 <p>{item.city}</p>
