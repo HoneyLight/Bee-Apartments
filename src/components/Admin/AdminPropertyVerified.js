@@ -59,10 +59,10 @@ function AdminPropertyVerified() {
                     </div>
                     <div className="product-menu">
                         <div className="products">
-                            {g
+                            {
                                 verified && verified.map((data) => (
                                     <div className="product">
-                                        <img src={img1} alt="Product" />
+                                        <img src={data.image} alt="Product" />
                                         <h3>{data.name}</h3>
                                         <p>{data.category}</p>
                                         <p>{data.city}</p>

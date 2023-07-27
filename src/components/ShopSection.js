@@ -1,4 +1,5 @@
 import "./ShopSection.css"
+import { useState } from "react";
 import { IoLocationOutline, IoStarOutline, IoBedOutline } from "react-icons/io5";
 import { TbResize } from "react-icons/tb";
 import a1 from "./image/a1.jpg";
@@ -9,107 +10,53 @@ import bath from "./image/bath.png";
 import bed from "./image/bed.png";
 import mod from "./image/mod.jpg";
 import { Link } from "react-router-dom";
+
+
 function ShopSection() {
+    const [shop, setShop] = useState();
+
+    let getToken = localStorage.getItem("merchantToken");
+
+    fetch("http://property.reworkstaging.name.ng/v1/properties?merchant=64bd8c6cec5946cdadd37736&verified=true", {
+        method: "GET",
+        headers: { "Content-Type": "application/json", "authorization": `Bearer ${getToken}` },
+    })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setShop(data.data);
+            // console.log(data.data);
+        })
+        .catch((err) => {
+            console.log(err.message)
+        })
+
     return (
         <div className="shopsection"><br /><br /><br /><br /><br /><br /><br /><br />
             <h1 className="our-choice-h1">Our choice of <br />
                 popular real estate</h1>
 
             <div className='shop-property'>
-                <Link to="/Property" className="shop-link">
-                    <div className="shop-property-row">
-                        <img src={a1} alt="" />
-                        <h5 className="sell">Sell</h5>
-                        <h5 className="wishlist"><IoStarOutline /></h5>
-                        <p><IoLocationOutline />APARTMENTS - Queens</p>
-                        <h2>White Stylish Loft</h2>
-                        <p>White palette and sleek design, creating a sophisticated and inviting contemporary living space.</p>
-                        <h4>____________________________________________________</h4>
-                        <div className="shop-icons">
-                            <div><h3>$555,000</h3></div>
-                            <div className="resize-container"><TbResize className="resize-icon" />   <span>250m2</span></div>
-                            <div><img src={bed} alt="bed" />    <span>3</span></div>
-                            <div><img src={bath} alt="bath" />   <span>4</span></div>
-                        </div>
-                    </div>
-                </Link>
-                <div className="shop-property-row">
-                    <img src={a2} alt="" />
-                    <h5 className="sell">Sell</h5>
-                    <h5 className="wishlist"><IoStarOutline /></h5>
-                    <p><IoLocationOutline />APARTMENTS - Queens</p>
-                    <h2>White Stylish Loft</h2>
-                    <p>White palette and sleek design, creating a sophisticated and inviting contemporary living space.</p>
-                    <h4>____________________________________________________</h4>
-                    <div className="shop-icons">
-                        <div><h3>$555,000</h3></div>
-                        <div className="resize-container"><TbResize className="resize-icon" />   <span>250m2</span></div>
-                        <div><img src={bed} alt="bed" />    <span>3</span></div>
-                        <div><img src={bath} alt="bath" />   <span>4</span></div>
-                    </div>
-                </div>
-                <div className="shop-property-row">
-                    <img src={a3} alt="" />
-                    <h5 className="sell">Sell</h5>
-                    <h5 className="wishlist"><IoStarOutline /></h5>
-                    <p><IoLocationOutline />APARTMENTS - Queens</p>
-                    <h2>White Stylish Loft</h2>
-                    <p>White palette and sleek design, creating a sophisticated and inviting contemporary living space.</p>
-                    <h4>____________________________________________________</h4>
-                    <div className="shop-icons">
-                        <div><h3>$555,000</h3></div>
-                        <div className="resize-container"><TbResize className="resize-icon" />  <span>250m2</span></div>
-                        <div><img src={bed} alt="bed" />    <span>3</span></div>
-                        <div><img src={bath} alt="bath" />   <span>4</span></div>
-                    </div>
-                </div>
-                <div className="shop-property-row">
-                    <img src={a1} alt="" />
-                    <h5 className="sell">Sell</h5>
-                    <h5 className="wishlist"><IoStarOutline /></h5>
-                    <p><IoLocationOutline />APARTMENTS - Queens</p>
-                    <h2>White Stylish Loft</h2>
-                    <p>White palette and sleek design, creating a sophisticated and inviting contemporary living space.</p>
-                    <h4>____________________________________________________</h4>
-                    <div className="shop-icons">
-                        <div><h3>$555,000</h3></div>
-                        <div className="resize-container"><TbResize className="resize-icon" />   <span>250m2</span></div>
-                        <div><img src={bed} alt="bed" />    <span>3</span></div>
-                        <div><img src={bath} alt="bath" />   <span>4</span></div>
-                    </div>
-                </div>
-                <div className="shop-property-row">
-                    <img src={a2} alt="" />
-                    <h5 className="sell">Sell</h5>
-                    <h5 className="wishlist"><IoStarOutline /></h5>
-                    <p><IoLocationOutline />APARTMENTS - Queens</p>
-                    <h2>White Stylish Loft</h2>
-                    <p>White palette and sleek design, creating a sophisticated and inviting contemporary living space.</p>
-                    <h4>____________________________________________________</h4>
-                    <div className="shop-icons">
-                        <div><h3>$555,000</h3></div>
-                        <div className="resize-container"><TbResize className="resize-icon" />   <span>250m2</span></div>
-                        <div><img src={bed} alt="bed" />    <span>3</span></div>
-                        <div><img src={bath} alt="bath" />   <span>4</span></div>
-                    </div>
-                </div>
-                <div className="shop-property-row">
-                    <img src={a3} alt="" />
-                    <h5 className="sell">Sell</h5>
-                    <h5 className="wishlist"><IoStarOutline /></h5>
-                    <p><IoLocationOutline />APARTMENTS - Queens</p>
-                    <h2>White Stylish Loft</h2>
-                    <p>White palette and sleek design, creating a sophisticated and inviting contemporary living space.</p>
-                    <h4>____________________________________________________</h4>
-                    <div className="shop-icons">
-                        <div><h3>$555,000</h3></div>
-                        <div className="resize-container"><TbResize className="resize-icon" />   <span>250m2</span></div>
-                        <div><img src={bed} alt="bed" />    <span>3</span></div>
-                        <div><img src={bath} alt="bath" />   <span>4</span></div>
-                    </div>
-                </div>
-
-
+                {
+                    shop && shop.map((item, i) => (
+                        <Link to={`/Shop/${item.id}`} className="shop-link" key={i}>
+                            <div className="shop-property-row">
+                                <img src={item.image} alt="" />
+                                <h5 className="sell">{item.type}</h5>
+                                <h5 className="wishlist"><IoStarOutline /></h5>
+                                <p><IoLocationOutline />{item.name}</p>
+                                <h2>{item.category}</h2>
+                                <p>{item.city}</p>
+                                <h4>____________________________________________________</h4>
+                                <div className="shop-icons">
+                                    <div><h3>₦{item.price}</h3></div>
+                                    <div className="resize-container"><TbResize className="resize-icon" />   <span>{item.total_area}</span></div>
+                                    <div><img src={bed} alt="bed" />    <span>{item.bedroom}</span></div>
+                                    <div><img src={bath} alt="bath" />   <span>{item.bathroom}</span></div>
+                                </div>
+                            </div>
+                        </Link>
+                    ))
+                }
             </div><br /><br />
             <div className="browse-more-properties"><br /><br /><br /><br />
                 <button>Browse More Properties</button><br /><br /><br /><br />
@@ -128,27 +75,9 @@ function ShopSection() {
                         <p>– illum idquem</p><br />
 
                         <button>Search Property</button>
-
-
                     </div>
-
-
                 </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
             </div>
-
         </div>
     )
 }

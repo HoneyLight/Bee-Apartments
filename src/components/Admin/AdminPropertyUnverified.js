@@ -1,7 +1,6 @@
 import "./Admin.css";
 import AdminNavigation from "./AdminNavigation";
 import AdminSidebar from "./AdminSidebar";
-// import Btn from "../components/Btn";
 import img1 from "../image/home.jpg";
 import { useState } from "react";
 import { useEffect } from "react";
@@ -32,14 +31,18 @@ function AdminPropertyUnverified() {
     }, [])
 
     const verifyProperty = (propId) => {
-        fetch(`http://property.reworkstaging.name.ng/v1/properties?merchant=64bd8c6cec5946cdadd37736&verified=false`, {
+        fetch('http://property.reworkstaging.name.ng/v1/properties?merchant=64bd8c6cec5946cdadd37736&verified=false', {
             method: "GET",
-            headers: { 'Content-Type': 'application/json', "authorization": `Bearer ${getToken}` },
+            headers: { 'Content-Type': 'application/json',
+             "authorization": `Bearer ${getToken}` },
         })
             .then((resp) => resp.json())
             .then((output) => {
+                console.log(output)
+                
                 const updateOutput = output.data.find((item) => {
                     if (item.id === propId) {
+                        // console.log(item)
                         item.is_verified = true;
                         setVerify(item.is_verified);
                         localStorage.setItem("is_verified", JSON.stringify(item))
@@ -47,7 +50,8 @@ function AdminPropertyUnverified() {
 
                         fetch(`http://property.reworkstaging.name.ng/v1/properties/${item.id}/set-verified`, {
                             method: "PUT",
-                            headers: { "Content-Type": "application/json", "authorization": `Bearer ${getToken}` },
+                            headers: { "Content-Type": "application/json",
+                             "authorization": `Bearer ${getToken}` },
                             body: JSON.stringify({ is_verified: true }),
                         })
                             .then((response) => {
@@ -56,7 +60,7 @@ function AdminPropertyUnverified() {
                                 }
                                 else {
                                     alert("Verification sucessful!")
-                                    // console.log(response);
+                                    console.log(response);
                                 }
                             })
                             .catch((err) => {
@@ -71,6 +75,8 @@ function AdminPropertyUnverified() {
             })
     }
 
+
+
     let merchantToken = localStorage.getItem("merchantToken");
 
     const deleteProperty = (id) => {
@@ -81,14 +87,10 @@ function AdminPropertyUnverified() {
                 'Authorization': `Bearer ${merchantToken}`
             }
         })
-        .then((resp) => {
-            if (resp.ok) {
-                const updatedUnverified = unverified.filter((property) => property.id !== id);
-                setUnverified(updatedUnverified);
-                alert("Property deleted successfully!");
-            } else {
-                throw new Error("Failed to delete property!");
-            }
+        .then((resp) => resp.json()).then((data) => {
+            const deletePro = data.filter((del) => del.id !== id);
+            setUnverified(deletePro);
+            console.log(data);
         }).catch((err) => {
                 console.log(err.message)
             })
@@ -108,7 +110,7 @@ function AdminPropertyUnverified() {
                             {
                                 unverified && unverified.map((data) => (
                                     <div className="product">
-                                        <img src={img1} alt="Product" />
+                                        <img src={data.images} alt="" />
                                         <h3>{data.name}</h3>
                                         <p>{data.category}</p>
                                         <h4>₦{data.price}</h4>

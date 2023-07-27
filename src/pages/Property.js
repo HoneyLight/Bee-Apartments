@@ -1,30 +1,53 @@
 
 import Footer from "../components/Footer";
 import Navigation from "../components/Navigation";
+import { useState, useEffect } from "react";
 import "./Single.css";
+import { useParams } from "react-router-dom";
 
 // import agent from "../pages/agent.jpg";
-function Post() {
+function Property() {
+const {id} = useParams();
+const [property, setProperty] = useState([]);
+
+let getToken = localStorage.getItem("merchantToken")
+
+const getProperty = () => {
+    fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`, {
+        method: "GET",
+        headers: {"Content-Type": "application/json", "authorization": `Bearer ${getToken}`},
+    })
+    .then((resp) => resp.json())
+    .then((data) => {
+        setProperty(data);
+        console.log(data);
+    })
+};
+
+useEffect(() => {
+    getProperty();
+}, []);
+
     return (
         <div>
             <Navigation />
             <div className="container-single-page">
                 <div className="SinglePage">
                     <div className="col">
-                        <img src="https://newhome.qodeinteractive.com/wp-content/uploads/2023/03/property-gallery-img-1-new.jpg " alt="" />
+                        <img src={property.image} alt="" />
                     </div>
                     <div className="col">
                         <div>
-                            <img src="https://newhome.qodeinteractive.com/wp-content/uploads/2023/03/property-gallery-img-2-new-600x473.jpg" alt="" />
+                            <img src={property.image} alt="" />
                         </div>
                         <div>
-                            <img src="https://newhome.qodeinteractive.com/wp-content/uploads/2023/03/property-gallery-img-3-new-600x473.jpg" alt="" />
+                            <img src={property.image} alt="" />
                         </div>
                         <div>
-                            <img src="https://newhome.qodeinteractive.com/wp-content/uploads/2023/03/property-gallery-img-4-600x473.jpg" alt="" />
+                            <img src={property.image} alt="" />
                         </div>
                         <div>
-                            <img src="https://newhome.qodeinteractive.com/wp-content/uploads/2023/03/property-gallery-img-5-600x473.jpg" alt="" />
+                            <img src={property.image} alt="" />
                             {/* <button>see all photos</button> */}
                         </div>
                     </div>
@@ -34,16 +57,15 @@ function Post() {
                     <div className="property-left">
                         <div className="property-desc">
                             <h2>Description</h2><br />
-                            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quam veritatis sint harum, alias ipsum consectetur laudantium assumenda dolorem quae natus, vero aperiam, ipsam deserunt? Sunt rem delectus eos laudantium atque.
-                                Impedit illum iste accusantium voluptates illo dignissimos totam porro hic dolores, labore modi ducimus. Quasi iste, commodi soluta cum veniam corrupti hic quas. Quod accusantium quidem reprehenderit alias. Incidunt, optio!
-                                Tenetur odit eos, magnam aliquam quod quo praesentium repellendus et perferendis nostrum quia velit porro quibusdam incidunt quisquam ab ducimus illo magni perspiciatis atque voluptas alias eum nisi saepe! Recusandae.
-                                Labore numquam optio perferendis sed iusto? Atque, non, ab molestias eum fugiat modi repudiandae saepe incidunt sequi rem, temporibus nulla corporis vitae facere cum quibusdam cupiditate sit labore alias mollitia.
-                                Vel magnam qui laborum expedita architecto, quam consectetur quod sunt cupiditate impedit commodi. Et deserunt mollitia delectus sapiente, alias nemo at neque. Dolore ex dicta numquam expedita, tempore similique accusamus.</p>
+                            <p>{property.description}</p>
                         </div>
                         <div className="prop-features">
                             <h2>Property features</h2><br />
-                            <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Ut provident exercitationem minima laborum perspiciatis doloremque voluptatum molestiae facilis quaerat, quibusdam necessitatibus quod veniam natus id eum, earum dignissimos quo voluptate.
-                                Asperiores, esse. Praesentium magnam reiciendis amet culpa iste eum facilis est dolores molestiae modi sed voluptatum deleniti, assumenda maiores. Dolorum eos harum ea repudiandae? Incidunt consequuntur autem suscipit maxime eligendi?</p>
+                            <h3>{property.name}</h3>
+                            <h4>{property.category}</h4>
+                            <p>{property.city}</p>
+                            <p>{property.country}</p>
+                            <p>{property.price}</p>
                         </div>
                         <div className="prop-details">
                             <h4>Property details</h4>
@@ -53,29 +75,29 @@ function Post() {
                                         <p>Size:</p>
                                         <p>Bedrooms:</p>
                                         <p>Bathromms:</p>
-                                        <p>Floor:</p>
-                                        <p>Additional space:</p>
+                                        <p>Latitude:</p>
+                                        <p>Longitude:</p>
                                     </div>
                                     <div>
-                                        <p>290m</p>
-                                        <p>4</p>
-                                        <p>3</p>
-                                        <p>Ground</p>
-                                        <p>Attic</p>
+                                        <p>{property.total_area}</p>
+                                        <p>{property.bedroom}</p>
+                                        <p>{property.bathroom}</p>
+                                        <p>{property.lat}</p>
+                                        <p>{property.lng}</p>
                                     </div>
                                 </div>
                                 <div className="prop-details-right">
                                     <div>
                                         <p>Furnishing:</p>
-                                        <p>Ceiling Height:</p>
-                                        <p>Construction Year:</p>
-                                        <p>Renovation:</p>
+                                        <p>Amenities:</p>
+                                        <p>Property Use:</p>
+                                        <p>Property Type:</p>
                                     </div>
                                     <div>
-                                        <p>Furnished</p>
-                                        <p>3m</p>
-                                        <p>2007</p>
-                                        <p>2017</p>
+                                        <p>{property.furnishing}</p>
+                                        <p>{property.amenities}</p>
+                                        <p>{property.property_use}</p>
+                                        <p>{property.type}</p>
                                     </div>
                                 </div>
                             </div>
@@ -238,4 +260,4 @@ function Post() {
         </div>
     );
 }
-export default Post;
+export default Property;

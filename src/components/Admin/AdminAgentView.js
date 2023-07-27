@@ -8,15 +8,15 @@ function AdminAgentView() {
     const [agent, setAgent] = useState([]);
    
 
-    let getToken = localStorage.getItem("agentToken");
+    let getToken = localStorage.getItem("merchantToken");
 
-    fetch("http://property.reworkstaging.name.ng/v1/agents", {
+    fetch("http://property.reworkstaging.name.ng/v1/merchants/agents", {
         method: "GET",
         headers: {"Content-Type" : "application/json", "authorization": `Bearer ${getToken}`},
     })
     .then((resp) => resp.json())
     .then((data) => {
-        setAgent(data);
+        setAgent(data.data);
     }).catch((err) => {
         console.log(err.message)
     });
@@ -36,25 +36,25 @@ function AdminAgentView() {
                             <th>S/No</th>
                             <th>Name</th>
                             <th>Email</th>
-                            <th>Phone Number</th>
-                            <th>Password</th>
+                            <th>Company</th>
                             <th>Action</th>
                         </tr>
                         {
-                            agent && agent.map((data, index) => (
+                            agent && agent.map((item, index) => (
                         <tr>
                             <td>{index + 1}</td>
-                            <td>{data.full_name}</td>
-                            <td>{data.email}</td>
-                            <td>{data.phone}</td>
-                            <td>{data.password}</td>
+                            <td>{item.full_name}</td>
+                            <td>{item.email}</td>
+                            <td>{item.company}</td>
                             <td>
-                                {/* <Btn title="Edit" bgColor="rgb(125, 75, 28)" /> */}
-                                {/* <Btn title="Delete" bgColor="#ac0d0d" /> */}
+                                <button>Verify</button>
+                                <button>Edit</button>
+                                <button>Delete</button>
                             </td>
                         </tr>
                             ))
                         }
+                      
 
                     </table>
 
