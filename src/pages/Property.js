@@ -5,7 +5,7 @@ import { useState, useEffect } from "react";
 import "./Single.css";
 import { useParams } from "react-router-dom";
 
-// import agent from "../pages/agent.jpg";
+
 function Property() {
 const {id} = useParams();
 const [property, setProperty] = useState([]);

@@ -14,6 +14,7 @@ function AdminSidebar() {
                 <Link to="/admin-property-unverified" className="sidebar-links">View Unverified Property</Link>
                 <Link to="/admin-property-verified" className="sidebar-links">View Verified Property</Link>
                 <Link to="/admin-agent-view" className="sidebar-links">View Agent</Link>
+                <Link to="/admin-wishlist" className="sidebar-links">View Wishlist</Link>
             </ul>
         </div>
     )

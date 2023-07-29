@@ -29,6 +29,8 @@ function AdminLogin(){
         .then((resp) => resp.json())
         .then((output) => {
             let getToken = output.data.token;
+            let getId = output.data.id;
+            localStorage.setItem("merchant_id", getId);
             localStorage.setItem("merchantToken", getToken);
             console.log(output);
             alert("Merchant Logged in Successfully")

@@ -9,10 +9,26 @@ import { useState, useEffect } from "react";
 function AdminDashboard() {
     const [agent, setAgent] = useState([]);
     const [verified, setVerified]= useState("");
-   
+    const [wishlist, setWishlist] = useState("");
+    const merchant_id = localStorage.getItem("merchant_id");
+    const getToken = localStorage.getItem("merchantToken");
+    const [user, setUser] = useState([]);
 
-    let getToken = localStorage.getItem("merchantToken");
 
+    // Users
+    fetch("http://property.reworkstaging.name.ng/v1/users", {
+        method: "GET",
+        headers: { "Content-Type": "application/json", "authorization": `Bearer ${getToken}` },
+    })
+        .then((resp) => resp.json())
+        .then((data) => {
+            setUser(data.data);
+        }).catch((err) => {
+            console.log(err.message)
+        });
+
+    
+    // Agents
     fetch("http://property.reworkstaging.name.ng/v1/merchants/agents", {
         method: "GET",
         headers: {"Content-Type" : "application/json", "authorization": `Bearer ${getToken}`},
@@ -21,10 +37,11 @@ function AdminDashboard() {
     .then((data) => {
         setAgent(data.data);
     }).catch((err) => {
-        console.log(err.message)
+        // console.log(err.message)
     });
+    
 
-
+    // verified properties    
     useEffect(()=>{
         fetch("http://property.reworkstaging.name.ng/v1/properties?merchant=64bd8c6cec5946cdadd37736&verified", {
             method: "GET",
@@ -36,12 +53,26 @@ function AdminDashboard() {
         .then((resp)=> resp.json())
         .then((output)=> {
             setVerified(output.data);
-            console.log(output.data);
+            // console.log(output.data);
         })
         .catch((err)=>{
             console.log(err.message)
         })
     },[])
+
+    
+    // Wishlist
+    useEffect(() => {
+        fetch(`http://property.reworkstaging.name.ng/v1/merchants/${merchant_id}/wishlist`, {
+            headers: { "Authorization": `Bearer ${getToken}` },
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                setWishlist(data.data);
+                // console.log(data.data);
+            })
+    }, []);
+   
 
     return (
         <div>
@@ -83,7 +114,7 @@ function AdminDashboard() {
                             </div>
                             <div>
                                 <h5>Total Users</h5>
-                                <h4>0</h4>
+                                <h4>{user.length}</h4>
                             </div>
                         </div>
                     </div>

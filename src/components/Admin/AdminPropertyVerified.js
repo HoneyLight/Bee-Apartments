@@ -31,20 +31,21 @@ function AdminPropertyVerified() {
 
     let merchantToken = localStorage.getItem('merchantToken')
 
-    const deleteProperty= (id)=>{
-      fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`,{
-        method:"DELETE",
-        headers:{'Content-Type': 'application/json',
-        'Authorization': `Bearer ${merchantToken}`}
-      })
-      .then((resp)=> resp.json())
-      .then((data)=>{
-        const updateDelete = data.filter((del)=> del.id !== id)
-        setVerified(updateDelete)
-        console.log(data)
-      })
-      .catch((err) => err.message)
-    }
+    // const deleteProperty= (id)=>{
+    //   fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`,{
+    //     method:"DELETE",
+    //     headers:{'Content-Type': 'application/json',
+    //     'Authorization': `Bearer ${merchantToken}`}
+    //   })
+    //   .then((resp)=> resp.json())
+    //   .then((data)=>{
+    //     const updateDelete = data.filter((del)=> del.id !== id)
+    //     setVerified(updateDelete)
+    //     console.log(data)
+    //   })
+    //   .catch((err) => err.message)
+    // console.log(id)
+    // }
     
 
 
@@ -70,7 +71,7 @@ function AdminPropertyVerified() {
                                         <h4>₦{data.price}</h4>
                                         <div className="product-btns">
                                             <button>Edit</button>
-                                            <button onClick={() => deleteProperty(data.id)}>Delete</button>
+                                            {/* <button onClick={() => deleteProperty(data.id)}>Delete</button> */}
                                             {/* <Btn title="Verify" bgColor="rgb(125, 75, 28)" /> */}
                                             {/* <Btn title="Delete" bgColor="#ac0d0d" /> */}
                                         </div>

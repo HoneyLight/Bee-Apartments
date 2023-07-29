@@ -1,5 +1,5 @@
 import "./ShopSection.css"
-import { useState } from "react";
+import { useState, useEffect} from "react";
 import { IoLocationOutline, IoStarOutline, IoBedOutline } from "react-icons/io5";
 import { TbResize } from "react-icons/tb";
 import land from "./image/land.jpeg";
@@ -7,6 +7,7 @@ import bath from "./image/bath.png";
 import bed from "./image/bed.png";
 import mod from "./image/mod.jpg";
 import { Link } from "react-router-dom";
+import Wishlist from "../pages/Wishlist";
 
 
 function ShopSection() {
@@ -14,18 +15,43 @@ function ShopSection() {
 
     let getToken = localStorage.getItem("merchantToken");
 
-    fetch("http://property.reworkstaging.name.ng/v1/properties?merchant=64bd8c6cec5946cdadd37736&verified=true", {
-        method: "GET",
-        headers: { "Content-Type": "application/json", "authorization": `Bearer ${getToken}` },
-    })
-        .then((resp) => resp.json())
-        .then((data) => {
-            setShop(data.data);
-            // console.log(data.data);
+    useEffect(() => {
+        fetch("http://property.reworkstaging.name.ng/v1/properties?merchant=64bd8c6cec5946cdadd37736&verified=true", {
+            method: "GET",
+            headers: { "Content-Type": "application/json", "authorization": `Bearer ${getToken}` },
         })
-        .catch((err) => {
-            console.log(err.message)
+            .then((resp) => resp.json())
+            .then((data) => {
+                setShop(data.data);
+                console.log(data.data);
+            })
+            .catch((err) => {
+                console.log(err.message)
+            });
+    }, [])
+
+
+    const wishlist = (id) => {
+        let user_id = localStorage.getItem("user_id");
+        let property_id = id;
+
+        let wish = {
+            property_id: property_id,
+            user_id: user_id,
+        }
+        console.log(user_id)
+
+        fetch(`http://property.reworkstaging.name.ng/v1/users/wishlist`, {
+            method: "POST",
+            headers: { "Content-Type": "Application/json", "authorization": `Bearer ${getToken}` },
+            body: JSON.stringify(wish),
+        }).then((resp) => resp.json()).then((data) => {
+            console.log(data);
+            alert("Item added to Wishlist");
+        }).catch((err) => {
+            console.log(err.message);
         })
+    }
 
     return (
         <div className="shopsection"><br /><br /><br /><br /><br /><br /><br /><br />
@@ -35,23 +61,24 @@ function ShopSection() {
             <div className='shop-property'>
                 {
                     shop && shop.map((item, i) => (
-                        <Link to={`/Shop/${item.id}`} className="shop-link" key={i}>
-                            <div className="shop-property-row">
+                        <div className="shop-property-row">
+                            <Link to={`/Shop/${item.id}`} className="shop-link" key={i}>
                                 <img src={item.image} alt="" />
                                 <h5 className="sell">{item.type}</h5>
-                                <h5 className="wishlist"><Link to=""><IoStarOutline /></Link></h5>
+                                <h5 className="wishlist"><IoStarOutline /></h5>
                                 <p><IoLocationOutline />{item.name}</p>
                                 <h2>{item.category}</h2>
                                 <p>{item.city}</p>
-                                <h4>____________________________________________________</h4>
-                                <div className="shop-icons">
-                                    <div><h3>₦{item.price}</h3></div>
-                                    <div className="resize-container"><TbResize className="resize-icon" />   <span>{item.total_area}</span></div>
-                                    <div><img src={bed} alt="bed" />    <span>{item.bedroom}</span></div>
-                                    <div><img src={bath} alt="bath" />   <span>{item.bathroom}</span></div>
-                                </div>
+                            </Link>
+                            <button onClick={() => wishlist(item.id)}><IoStarOutline /></button>
+                            <h4>____________________________________________________</h4>
+                            <div className="shop-icons">
+                                <div><h3>₦{item.price}</h3></div>
+                                <div className="resize-container"><TbResize className="resize-icon" />   <span>{item.total_area}</span></div>
+                                <div><img src={bed} alt="bed" />    <span>{item.bedroom}</span></div>
+                                <div><img src={bath} alt="bath" />   <span>{item.bathroom}</span></div>
                             </div>
-                        </Link>
+                        </div>
                     ))
                 }
             </div><br /><br />

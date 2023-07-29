@@ -27,7 +27,9 @@ function Login() {
         .then((resp) => resp.json())
         .then((data) => {
             let getToken = data.data.token;
+            let user_id = data.data.id;
             localStorage.setItem("userToken", getToken);
+            localStorage.setItem("user_id", user_id)
             console.log(data);
             alert("You have successfully Logged in")
         }).catch((err) => (err.message));
