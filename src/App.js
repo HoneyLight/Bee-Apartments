@@ -53,8 +53,8 @@ function App() {
         {/* new */}
         <Route path='/admin' element={<AdminDashboard />} />
         <Route path='/admin-login' element={<AdminLogin />} />
-        <Route path="/admin-create-user" element={<AdminCreateUser />} />
-        <Route path="/admin-create-property" element={<AdminCreateProperty />} />
+        <Route path="/admin-create-user/:id" element={<AdminCreateUser />} />
+        <Route path="/admin-create-property/:id" element={<AdminCreateProperty />} />
         <Route path="/admin-property-unverified" element={<AdminPropertyUnverified />} />
         <Route path="/admin-property-verified" element={<AdminPropertyVerified />} />
         <Route path="/admin-user-view" element={<AdminUserView />} />

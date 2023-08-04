@@ -6,12 +6,42 @@ import { useParams } from "react-router-dom";
 
 
 function AdminCreateUser() {
+    // const {id} = useParams();
+
     const [firstname, setFirstname] = useState("");
     const [lastname, setLastname] = useState("");
     const [email, setEmail] = useState("");
     const [phone, setPhone] = useState("");
     const [password, setPassword] = useState("");
     const [err, setErr] = useState(false);
+
+    let getToken = localStorage.getItem("merchantToken");
+    let user_id = localStorage.getItem("user_id")
+
+    useEffect(() => {
+        fetch(`http://property.reworkstaging.name.ng/v1/users/${user_id}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken}`
+            },
+        })
+            .then((resp) => resp.json())
+            .then((output) => {
+                setFirstname(output.firstname);
+                setLastname(output.lastname);
+                setEmail(output.email);
+                setPhone(output.phone);
+                setPassword(output.password);
+
+                console.log(output);
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
+    }, []);
+
+
 
     const handleCreate = (e) => {
         e.preventDefault();
@@ -27,52 +57,22 @@ function AdminCreateUser() {
             password: password,
         };
 
-        let getToken = localStorage.getItem("merchantToken");
 
-        // useEffect(() => {
-        //     fetch(`http://property.reworkstaging.name.ng/v1/users`, {
-        //         method: "GET",
-        //         headers: {
-        //             'Content-Type': 'application/json',
-        //             "authorization": `Bearer ${getToken}`
-        //         }
-        //     })
-        //         .then((resp) => resp.json())
-        //         .then((output) => {
-        //             setUnverified(output.data)
-        //             console.log(output.data)
-        //         })
-        //         .catch((error) => {
-        //             console.log(error.message)
-        //         })
-        // }, [])
-
-        // const editUser = () => {
-        //     fetch("http://property.reworkstaging.name.ng/v1/users", {
-        //         method: "GET",
-        //         headers: { 'Content-Type': 'application/json',
-        //         "authorization": `Bearer ${getToken}` },
-        //     })
-        //     .then((resp) => resp.json())
-        //     .then((data) => {
-        //         console.log(data);
-    
-        //         const updateUser = (id) => {
-        //             fetch(`http://property.reworkstaging.name.ng/v1/users/${id}`, {
-        //                 method: "PUT",
-        //                 headers: { 'Content-Type': 'application/json',
-        //                 "authorization": `Bearer ${getToken}` },
-        //                 body: JSON.stringify(user)
-        //             })
-        //             .then((resp) => resp.json())
-        //             .then((data) => {
-        //                 console.log("edited")
-        //             })
-        //         }
-        //         updateUser();
-        //     })
-        // }
-
+        fetch(`http://property.reworkstaging.name.ng/v1/users/${user_id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                "authorization": `Bearer ${getToken}`
+            },
+            body: JSON.stringify(user),
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                alert("User updated successfully");
+                console.log(data);
+            }).catch((err) => {
+                console.log(err.message)
+            });
     }
 
     return (

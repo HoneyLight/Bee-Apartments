@@ -73,150 +73,150 @@ function Createpro() {
       <div className="page">
         <Sidebar />
         <form className="forms" onSubmit={handleSubmit}>
-                <div className="form-group">
-                  <input type="text" placeholder="Name*" value={name} onChange={(e) => setName(e.target.value)} />
-                   {err && name === "" ? <span>Name Required</span> : null}
-               </div>
-  
-                 <div className="form-group">
-                   <input type="text" placeholder="Price*" value={price} onChange={(e) => setPrice(e.target.value)} />
-                   {err && price === "" ? <span>Price Required</span> : null}
-               </div>
-  
-               <div className="form-group">
-                  <input type="text" placeholder="Country*" value={country} onChange={(e) => setCountry(e.target.value)} />
-                  {err && country === "" ? <span>Country Required</span> : null}
-               </div>
-  
-               <div className="form-group">
-                 <input type="text" placeholder="State*" value={state} onChange={(e) => setState(e.target.value)} />
-                 {err && state === "" ? <span>State Required</span> : null}
-               </div>
-  
-               <div className="form-group">
-                 <input type="text" placeholder="City*" value={city} onChange={(e) => setCity(e.target.value)} />
-                 {err && city === "" ? <span>City Required</span> : null}
-               </div>
-  
-               <div className="form-group">
-                 <input type="text" placeholder="Latitude*" value={lat} onChange={(e) => setLat(e.target.value)} />
+          <div className="form-group">
+            <input type="text" placeholder="Name*" value={name} onChange={(e) => setName(e.target.value)} />
+            {err && name === "" ? <span>Name Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <input type="text" placeholder="Price*" value={price} onChange={(e) => setPrice(e.target.value)} />
+            {err && price === "" ? <span>Price Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <input type="text" placeholder="Country*" value={country} onChange={(e) => setCountry(e.target.value)} />
+            {err && country === "" ? <span>Country Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <input type="text" placeholder="State*" value={state} onChange={(e) => setState(e.target.value)} />
+            {err && state === "" ? <span>State Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <input type="text" placeholder="City*" value={city} onChange={(e) => setCity(e.target.value)} />
+            {err && city === "" ? <span>City Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <input type="text" placeholder="Latitude*" value={lat} onChange={(e) => setLat(e.target.value)} />
             {err && lat === "" ? <span>Latitude Required</span> : null}
-               </div>
-  
-               <div className="form-group">
-                  <input type="text" placeholder="Longitude*" value={lng} onChange={(e) => setLng(e.target.value)} />
-                  {err && lng === "" ? <span>Longtitude Required</span> : null}
-                </div>
-  
-                <div className="form-group">
-                  <label htmlFor="">Address</label>
-                  <input type="text" placeholder="Address*" value={address} onChange={(e) => setAddress(e.target.value)} />
-                 {err && address === "" ? <span>Address Required</span> : null}
-               </div>
-  
-               <div className="form-group">
-                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
-                   <option value="">Select Category</option>
-                   <option value="FLAT">FLAT</option>
-                   <option value="APPARTMENT">APPARTMENT</option>
-                   <option value="LAND">LAND</option>
-                   <option value="DUPLEX">DUPLEX</option>
-                   <option value="WAREHOUSE">WAREHOUSE</option>
-                   <option value="SHOP">SHOP</option>
-                 </select>
-                 {err && category === "" ? <span>Category Required</span> : null}
-               </div>
-               <div className="form-group">
-                 <input type="text" placeholder="Total Area*" value={total_area} onChange={(e) => setTotal_area(e.target.value)} />
-                 {err && total_area === "" ? <span>Total Area Required</span> : null}
-               </div>
-  
-                <div className="form-group">
-                   <select value={property_use} onChange={(e) => setProperty_use(e.target.value)}>
-                     <option value="">Select Property Use</option>
-                     <option value="RESIDENTIAL">RESIDENTIAL</option>
-                     <option value="COMMERCIAL">COMMERCIAL</option>
-                   </select>
-                   {err && property_use === "" ? <span>Property use Required</span> : null}
-                 </div>
-  
-                 <div className="form-group">
-                   <select value={payment_plan} onChange={(e) => setPayment_plan(e.target.value)}>
-                     <option value="">Select Payment Plan</option>
-                     <option value="PER_ANNUM">PER_ANNUM</option>
-                     <option value="MONTHLY">MONTHLY</option>
-                     <option value="PER_PLOT">PER_PLOT</option>
-                     <option value="PER_DAY">PER_DAY</option>
-                   </select>
-                   {err && payment_plan === "" ? <span>Payment Plan Required</span> : null}
-                 </div>
-  
-                 <div className="form-group">
-                   <select value={type} onChange={(e) => setType(e.target.value)}>
-                     <option value="">Type</option>
-                     <option value="RENT">RENT</option>
-                     <option value="LEASE">LEASE</option>
-                     <option value="SALES">SALES</option>
-                   </select>
-                 {err && type === "" ? <span>Type Required</span> : null}
-               </div>
-  
-  
-               <div className="form-group">
-                 <input type="number" placeholder="Bedroom*" value={bedroom} onChange={(e) => setBedroom(e.target.value)} />
-                  {err && bedroom === "" ? <span>Bed Room Required</span> : null}
-               </div>
-  
-  
-               <div className="form-group">
-                 <input type="number" placeholder="Bathroom*" value={bathroom} onChange={(e) => setBathroom(e.target.value)} />
-                 {err && bathroom === "" ? <span>Bathroom Required</span> : null}
-               </div>
-  
-               <div className="form-group">
-                 <input type="number" placeholder="Toilet*" value={toilet} onChange={(e) => setToilet(e.target.value)} />
-                 {err && toilet === "" ? <span>Toilet Required</span> : null}
-               </div>
-  
-               <div className="form-group">
-                 <select value={parking_space} onChange={(e) => setParking_space(e.target.value)}>
-                   <option value="">Select Parking Space</option>
-             <option value="1">1</option>
-                   <option value="2">2</option>
-                   <option value="3">3</option>
-                   <option value="4">4</option>
-                   <option value="5">5</option>
-                   <option value="6">6</option>
-                   <option value="7">7</option>
-                   <option value="8">8</option>
-                    <option value="9">9</option>
-                   <option value="10">10</option>
-                 </select>
-                 {err && parking_space === "" ? <span>Parking Space Required</span> : null}
-               </div>
-               <div className="form-group">
-                 <select value={furnishing} onChange={(e) => setFurnishing(e.target.value)}>
-                    <option value="">Property Status</option>
-                   <option value="FURNISHED">FURNISHED</option>
-                    <option value="UNFURNISHED">UNFURNISHED</option>
-                   </select>
-                   {err && furnishing === "" ? <span>Status Required</span> : null}
-                 </div>
-  
-  
-                 <div className="form-group">
-                   <textarea value={description} placeholder="Description*" onChange={(e) => setDescription(e.target.value)}></textarea>
-                   {err && description === "" ? <span>Description Required</span> : null}
-                 </div>
-                 <div className="form-group">
-                   <textarea value={disclaimer} placeholder="Disclaimer*" onChange={(e) => setDisclaimer(e.target.value)}></textarea>
-           {err && disclaimer === "" ? <span>Disclaimer Required</span> : null}
-                 </div>
-                 <div className="form-group">
-                   <input type="text" placeholder="Amenities*" value={amenities} onChange={(e) => setAmenities(e.target.value)} />
-                   {err && amenities === "" ? <span>Amenities Required</span> : null}
-                 </div>
-                 <button>Create Property</button>
+          </div>
+
+          <div className="form-group">
+            <input type="text" placeholder="Longitude*" value={lng} onChange={(e) => setLng(e.target.value)} />
+            {err && lng === "" ? <span>Longtitude Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <label htmlFor="">Address</label>
+            <input type="text" placeholder="Address*" value={address} onChange={(e) => setAddress(e.target.value)} />
+            {err && address === "" ? <span>Address Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <select value={category} onChange={(e) => setCategory(e.target.value)}>
+              <option value="">Select Category</option>
+              <option value="FLAT">FLAT</option>
+              <option value="APPARTMENT">APPARTMENT</option>
+              <option value="LAND">LAND</option>
+              <option value="DUPLEX">DUPLEX</option>
+              <option value="WAREHOUSE">WAREHOUSE</option>
+              <option value="SHOP">SHOP</option>
+            </select>
+            {err && category === "" ? <span>Category Required</span> : null}
+          </div>
+          <div className="form-group">
+            <input type="text" placeholder="Total Area*" value={total_area} onChange={(e) => setTotal_area(e.target.value)} />
+            {err && total_area === "" ? <span>Total Area Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <select value={property_use} onChange={(e) => setProperty_use(e.target.value)}>
+              <option value="">Select Property Use</option>
+              <option value="RESIDENTIAL">RESIDENTIAL</option>
+              <option value="COMMERCIAL">COMMERCIAL</option>
+            </select>
+            {err && property_use === "" ? <span>Property use Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <select value={payment_plan} onChange={(e) => setPayment_plan(e.target.value)}>
+              <option value="">Select Payment Plan</option>
+              <option value="PER_ANNUM">PER_ANNUM</option>
+              <option value="MONTHLY">MONTHLY</option>
+              <option value="PER_PLOT">PER_PLOT</option>
+              <option value="PER_DAY">PER_DAY</option>
+            </select>
+            {err && payment_plan === "" ? <span>Payment Plan Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <select value={type} onChange={(e) => setType(e.target.value)}>
+              <option value="">Type</option>
+              <option value="RENT">RENT</option>
+              <option value="LEASE">LEASE</option>
+              <option value="SALES">SALES</option>
+            </select>
+            {err && type === "" ? <span>Type Required</span> : null}
+          </div>
+
+
+          <div className="form-group">
+            <input type="number" placeholder="Bedroom*" value={bedroom} onChange={(e) => setBedroom(e.target.value)} />
+            {err && bedroom === "" ? <span>Bed Room Required</span> : null}
+          </div>
+
+
+          <div className="form-group">
+            <input type="number" placeholder="Bathroom*" value={bathroom} onChange={(e) => setBathroom(e.target.value)} />
+            {err && bathroom === "" ? <span>Bathroom Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <input type="number" placeholder="Toilet*" value={toilet} onChange={(e) => setToilet(e.target.value)} />
+            {err && toilet === "" ? <span>Toilet Required</span> : null}
+          </div>
+
+          <div className="form-group">
+            <select value={parking_space} onChange={(e) => setParking_space(e.target.value)}>
+              <option value="">Select Parking Space</option>
+              <option value="1">1</option>
+              <option value="2">2</option>
+              <option value="3">3</option>
+              <option value="4">4</option>
+              <option value="5">5</option>
+              <option value="6">6</option>
+              <option value="7">7</option>
+              <option value="8">8</option>
+              <option value="9">9</option>
+              <option value="10">10</option>
+            </select>
+            {err && parking_space === "" ? <span>Parking Space Required</span> : null}
+          </div>
+          <div className="form-group">
+            <select value={furnishing} onChange={(e) => setFurnishing(e.target.value)}>
+              <option value="">Property Status</option>
+              <option value="FURNISHED">FURNISHED</option>
+              <option value="UNFURNISHED">UNFURNISHED</option>
+            </select>
+            {err && furnishing === "" ? <span>Status Required</span> : null}
+          </div>
+
+
+          <div className="form-group">
+            <textarea value={description} placeholder="Description*" onChange={(e) => setDescription(e.target.value)}></textarea>
+            {err && description === "" ? <span>Description Required</span> : null}
+          </div>
+          <div className="form-group">
+            <textarea value={disclaimer} placeholder="Disclaimer*" onChange={(e) => setDisclaimer(e.target.value)}></textarea>
+            {err && disclaimer === "" ? <span>Disclaimer Required</span> : null}
+          </div>
+          <div className="form-group">
+            <input type="text" placeholder="Amenities*" value={amenities} onChange={(e) => setAmenities(e.target.value)} />
+            {err && amenities === "" ? <span>Amenities Required</span> : null}
+          </div>
+          <button>Create Property</button>
         </form>
       </div>
     </div>

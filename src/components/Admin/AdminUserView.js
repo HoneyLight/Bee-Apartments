@@ -3,12 +3,10 @@ import "./Admin.css";
 import AdminNavigation from "./AdminNavigation";
 import AdminSidebar from "./AdminSidebar";
 import { useState } from "react";
-import { useParams } from "react-router-dom";
 
 function AdminUserView() {
     const [user, setUser] = useState([]);
     const Navigate = useNavigate();
-    const { id } = useParams();
 
     let getToken = localStorage.getItem("merchantToken");
 
@@ -25,19 +23,16 @@ function AdminUserView() {
 
 
 
-    // const editUser = (id) => {
-    //     fetch(`http://property.reworkstaging.name.ng/v1/users/${id}`, {
-    //         method: "GET",
-    //         headers: 
-    //     })
-    // }
-    let merchantToken = localStorage.getItem("merchantToken");
+    const editUser = (id) => {
+        Navigate(`/admin-create-user/${id}`)
+    }
+
     const deleteUser = (id) => {
         fetch(`http://property.reworkstaging.name.ng/v1/users/${id}`, {
             method: "DELETE",
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${merchantToken}`
+                'Authorization': `Bearer ${getToken}`
             }
         })
             .then((resp) => resp.json()).then((data) => {
@@ -76,7 +71,7 @@ function AdminUserView() {
                                     <td>{data.email}</td>
                                     <td>{data.phone}</td>
                                     <td>
-                                        <button onClick={(id) => Navigate("/admin-create-user")}>Edit</button>
+                                        <button onClick={() => editUser(data.id)}>Edit</button>
                                         <button onClick={() => deleteUser(data.id)}>Delete</button>
                                     </td>
                                 </tr>

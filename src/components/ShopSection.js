@@ -1,5 +1,5 @@
 import "./ShopSection.css"
-import { useState, useEffect} from "react";
+import { useState, useEffect } from "react";
 import { IoLocationOutline, IoStarOutline, IoBedOutline } from "react-icons/io5";
 import { TbResize } from "react-icons/tb";
 import land from "./image/land.jpeg";
@@ -62,18 +62,20 @@ function ShopSection() {
                 {
                     shop && shop.map((item, i) => (
                         <div className="shop-property-row">
-                            <Link to={`/Shop/${item.id}`} className="shop-link" key={i}>
-                                <img src={item.image} alt="" />
+                            <div className="shopDiv">
+                                <Link to={`/Shop/${item.id}`} className="shop-link" key={i}>
+                                    <img src={item.image} alt="" />
+                                </Link>
                                 <h5 className="sell">{item.type}</h5>
-                                <h5 className="wishlist"><IoStarOutline /></h5>
+                                {/* <h5 className="wishlist"><IoStarOutline /></h5> */}
                                 <p><IoLocationOutline />{item.name}</p>
                                 <h2>{item.category}</h2>
-                                <p>{item.city}</p>
-                            </Link>
-                            <button onClick={() => wishlist(item.id)}><IoStarOutline /></button>
+                                <p>{item.city}</p><br />
+                                <div><h3>₦{item.price}</h3></div>
+                            </div>
                             <h4>____________________________________________________</h4>
                             <div className="shop-icons">
-                                <div><h3>₦{item.price}</h3></div>
+                                <button onClick={() => wishlist(item.id)}><IoStarOutline className="wish-icon" /></button>
                                 <div className="resize-container"><TbResize className="resize-icon" />   <span>{item.total_area}</span></div>
                                 <div><img src={bed} alt="bed" />    <span>{item.bedroom}</span></div>
                                 <div><img src={bath} alt="bath" />   <span>{item.bathroom}</span></div>

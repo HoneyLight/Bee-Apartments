@@ -2,7 +2,7 @@
     /* width: 95%; */
     /* margin: auto; */
     background-color: #181D24;
-    height: 2000px;
+    /* height: 2000px; */
 }
 
 
@@ -18,7 +18,10 @@
   background-color: white;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-    height: 420px;
+    height: 500px;
+}
+.shopDiv{
+    height: 80%;
 }
 .shop-property-row p, h2, h3{
     margin-left: 10px;
@@ -31,6 +34,7 @@
 }
 .shop-property img{
     width: 100%;
+    height: 70%;
     border-radius: 10px;   
 }
 .sell{
@@ -48,7 +52,7 @@
     margin-left: -1px;
     margin-top: -200px;
 }
-.wishlist{
+/* .wishlist{
     background-color: #181D24;
     color: white;
     border-top-left-radius: 10px;
@@ -62,6 +66,13 @@
     padding: 8px;
     margin-left: 365px;
     margin-top: -200px;
+} */
+.shop-icons button{
+    background: none;
+}
+.wish-icon{
+color: black;
+font-size: 30px;
 }
 .shop-icons{
     display: flex;

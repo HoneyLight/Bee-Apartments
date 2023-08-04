@@ -4,9 +4,11 @@ import AdminSidebar from "./AdminSidebar";
 import img1 from "../image/home.jpg";
 import { useState } from "react";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 function AdminPropertyVerified() {
     const [verified, setVerified]= useState();
+    const Navigate = useNavigate();
 
     let getToken = localStorage.getItem('merchantToken');
     // console.log(getToken)
@@ -29,7 +31,10 @@ function AdminPropertyVerified() {
         })
     },[])
 
-    let merchantToken = localStorage.getItem('merchantToken')
+    const editProperty = (id) => {
+        Navigate(`/admin-create-property/${id}`)
+    }
+
 
     // const deleteProperty= (id)=>{
     //   fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`,{
@@ -70,10 +75,8 @@ function AdminPropertyVerified() {
                                         <p>{data.country}</p>
                                         <h4>₦{data.price}</h4>
                                         <div className="product-btns">
-                                            <button>Edit</button>
+                                            <button onClick={() => editProperty(data.id)}>Edit</button>
                                             {/* <button onClick={() => deleteProperty(data.id)}>Delete</button> */}
-                                            {/* <Btn title="Verify" bgColor="rgb(125, 75, 28)" /> */}
-                                            {/* <Btn title="Delete" bgColor="#ac0d0d" /> */}
                                         </div>
                                     </div>
                                 ))

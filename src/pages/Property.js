@@ -7,26 +7,86 @@ import { useParams } from "react-router-dom";
 
 
 function Property() {
-const {id} = useParams();
-const [property, setProperty] = useState([]);
+    const [review, setReview] = useState();
+    const [comments, setComments] = useState("");
+    const { id } = useParams();
+    const [property, setProperty] = useState([]);
 
-let getToken = localStorage.getItem("merchantToken")
+    let getToken = localStorage.getItem("merchantToken")
 
-const getProperty = () => {
-    fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`, {
-        method: "GET",
-        headers: {"Content-Type": "application/json", "authorization": `Bearer ${getToken}`},
-    })
-    .then((resp) => resp.json())
-    .then((data) => {
-        setProperty(data);
-        console.log(data);
-    })
-};
+    const getProperty = () => {
+        fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`, {
+            method: "GET",
+            headers: { "Content-Type": "application/json", "authorization": `Bearer ${getToken}` },
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                setProperty(data);
+                console.log(data);
+            })
+    };
 
-useEffect(() => {
-    getProperty();
-}, []);
+    useEffect(() => {
+        getProperty();
+    }, []);
+
+    let userId = localStorage.getItem("user_id")
+    const postReview = (e) => {
+        e.preventDefault()
+        if (comments == "") {
+            alert("Kindly leave a review");
+            return;
+        }
+
+        let reviewDetails = {
+            property_id: id,
+            user_id: userId,
+            text: comments
+        }
+        console.log(reviewDetails)
+
+        let userToken = localStorage.getItem("userToken")
+
+        fetch("http://property.reworkstaging.name.ng/v1/reviews", {
+            method: "POST",
+            headers: {
+                "Content-type": "Application/Json",
+                "authorization": `Bearer ${userToken}`
+            },
+            body: JSON.stringify(reviewDetails)
+        })
+            .then((resp) => resp.json())
+            .then((data) => {
+                console.log(data)
+                setReview((preComment) => [...preComment, data.data])
+            }).catch((err) => {
+                console.log(err.message)
+            })
+        setComments("")
+
+    };
+
+    // REviews
+    let userToken = localStorage.getItem("userToken")
+
+    useEffect(() => {
+        fetch(
+            `http://property.reworkstaging.name.ng/v1/reviews?property_id=${id}&limit=10&page=0`,
+            {
+                headers: { authorization: `Bearer ${userToken}` },
+            }
+        )
+            .then((resp) => resp.json())
+            .then((data) => {
+                console.log(data.data);
+                setReview(data.data);
+            })
+            .catch((err) => {
+                console.log(err.message);
+            });
+    }, []);
+
+   
 
     return (
         <div>
@@ -225,7 +285,7 @@ useEffect(() => {
                                             <option value="">2:00pm</option>
                                         </select>
                                     </div>
-                                    
+
                                     <div>
                                         <select name="" id="">
                                             <option value="">Select Location</option>
@@ -255,7 +315,40 @@ useEffect(() => {
                     </div>
                 </div>
 
-            </div><br /><br />
+                <div className="reviews">
+                    <div className="review-section">
+                        <h2>Reviews</h2>
+                        <form className="reviewform" onSubmit={postReview}>
+                            <textarea
+                                name=""
+                                id=""
+                                cols="50"
+                                rows="2"
+                                onChange={(e) => setComments(e.target.value)}
+                                value={comments}
+                                placeholder="Leave a comment..."
+                            >
+                                {" "}
+                            </textarea>
+                            <button>Share Review</button>
+                        </form>
+                        {review &&
+                            review.map((comment) => (
+                                <div className="comments">
+                                    <div className="editReview">
+                                        <p style={{"color":"black"}}>{comment.text}</p>
+                                        <div className="editanddelete">
+                                            {/* <BiEditAlt/> */}
+                                            {/* <RiDeleteBin4Line /> */}
+                                        </div>
+
+                                    </div>
+                                </div>
+                            ))}
+                    </div>
+                </div>
+            </div>
+
             <Footer />
         </div>
     );

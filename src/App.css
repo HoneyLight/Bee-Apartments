@@ -317,3 +317,52 @@
   } 
   
       /* view Appointment ends */
+
+      /* Comments and reviews  */
+.reviews{
+  margin-bottom: 100px;
+  width: 90%;
+  margin: auto;
+  /* margin-top: 30px; */
+  color: white;
+}
+.review-section h2{
+  color: white;
+}
+.review-section{
+  width: 45%;
+}
+
+.reviewform{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.reviewform button{
+  padding: 12px 20px;
+  /* background-color: 
+  #1db2ff; */
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+.reviewform textarea{
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.editReview{
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: whitesmoke;
+  margin-top: 5px;
+  padding: 5px;
+  border-radius: 5px;
+}
+
+.editanddelete{
+  display: flex;
+  gap: 10px;
+}

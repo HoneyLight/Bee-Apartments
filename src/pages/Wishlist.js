@@ -14,8 +14,6 @@ function Wishlist() {
         })
             .then((resp) => resp.json())
             .then((data) => {
-                // let output = data.data;
-                // let wishlistOutput = output.filter((item) => wishlistOutput === item.id);
                 setProperty(data.data);
                 console.log(data.data);
             })

@@ -9,7 +9,7 @@ function AdminSidebar() {
                 <Link to="/admin-login" className="sidebar-links">Admin Login</Link>
                 <Link to="/admin-create-user" className="sidebar-links">Create User</Link>
                 <Link to="/admin-create-agent" className="sidebar-links">Create Agent</Link>
-                <Link to="/admin-create-property" className="sidebar-links">Create Property</Link>
+                {/* <Link to="/admin-create-property/:id" className="sidebar-links">Edit Property</Link> */}
                 <Link to="/admin-user-view" className="sidebar-links">View User</Link>
                 <Link to="/admin-property-unverified" className="sidebar-links">View Unverified Property</Link>
                 <Link to="/admin-property-verified" className="sidebar-links">View Verified Property</Link>

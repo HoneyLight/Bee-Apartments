@@ -1,8 +1,8 @@
 import './HomePage.css'
 import { IoCall, IoLocationOutline } from "react-icons/io5";
 import bg from "./image/bg.png"
-// import "slick-carousel/slick/slick.css";
-// import "slick-carousel/slick/slick-theme.css";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 import Slider from 'react-slick';
 import image1 from "./image/image1.jpg"
 import img2 from "./image/img2.jpg"
@@ -17,9 +17,34 @@ import dual1 from "./image/dual1.jpg"
 import dual2 from "./image/dual2.jpg"
 import agent from "./image/agent.jpg"
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 
 function HomePage() {
+    const [verified, setVerified] = useState();
+    // const Navigate = useNavigate();
+
+    let getToken = localStorage.getItem('merchantToken');
+    // console.log(getToken)
+
+    useEffect(() => {
+        fetch("http://property.reworkstaging.name.ng/v1/properties?merchant=64bd8c6cec5946cdadd37736&verified=true&limit=5", {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken}`
+            },
+        })
+            .then((resp) => resp.json())
+            .then((output) => {
+                setVerified(output.data);
+                console.log(output.data);
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
+    }, [])
 
     var settings = {
         fade: true,
@@ -101,14 +126,14 @@ function HomePage() {
                     <div className='banner-carousel1'>
                         <ul className='nav'>
                             <li><IoCall className='call-icon' /> CALL +234 906 3438 923</li>
-                            <li>HOME</li>
-                            <li>PAGES</li>
-                            <Link to="/Shop">
+                            <Link to="/" className='nav-link'><li>HOME</li></Link>
+                            <li>WORK</li>
+                            <Link to="/Shop" className='nav-link'>
                                 <li>PROPERTY</li>
                             </Link>
                             <li><img src={bg} alt="logo" /></li>
-                            <li>APARTMENTS</li>
-                            <li>BLOG</li>
+                            <Link className='nav-link'><li>AGENT PROFILE</li></Link>
+                            <Link className='nav-link'><li>USER PROFILE</li></Link>
                             <li><button>REGISTER</button></li>
                         </ul>
                         <h1>Q1 DISTRICT</h1>
@@ -120,7 +145,7 @@ function HomePage() {
                             <li><IoCall className='call-icon' /> CALL +234 906 3438 923</li>
                             <li>HOME</li>
                             <li>PAGES</li>
-                            <Link to="/Shop">
+                            <Link to="/Shop" className='nav-link'>
                                 <li>PROPERTY</li>
                             </Link>
                             <li><img src={bg} alt="logo" /></li>
@@ -137,7 +162,7 @@ function HomePage() {
                             <li><IoCall className='call-icon' /> CALL +234 906 3438 923</li>
                             <li>HOME</li>
                             <li>PAGES</li>
-                            <Link to="/Shop" >
+                            <Link to="/Shop" className='nav-link'>
                                 <li>PROPERTY</li>
                             </Link>
                             <li><img src={bg} alt="logo" /></li>
@@ -168,138 +193,63 @@ function HomePage() {
                 </div>
 
                 <div className='selection-container'>
-
                     <div className='selection-carousel-container'>
-                        <p className='bestoffer'>BEST OFFERS</p>
-                        <h1 className='find-home'>FIND A HOME THAT SUITS <br />YOUR LIFESTYLE</h1>
-                        <p className='middle-line'>_____________________________________________________________________________________________________________________________________________________</p><br />
-                        <Slider {...selection} className='carousel-row-container' >
-                            <div className="carousel-row-1">
-                                <img src={a1} alt="a1" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />APARTMENTS - Queens</p>
-                                    <h2>$555,000</h2>
-                                    <h2>White Stylish Loft</h2>
-                                    <p>The White Stylish Loft showcases a pristine white palette and sleek design, creating a sophisticated and inviting contemporary living space.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-row">
-                                <img src={a2} alt="a2" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />CONDOS - Manhattan</p>
-                                    <h2>$2,200</h2>
-                                    <h2>Park House</h2>
-                                    <p>Park House is a picturesque residential property surrounded by nature, offering comfortable living and a range of amenities.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-row">
-                                <img src={a3} alt="a3" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />APARTMENTS - Bronx</p>
-                                    <h2>$1,220</h2>
-                                    <h2>Avenue Apartment</h2>
-                                    <p>The Avenue Apartment is a modern and luxurious residential complex offering upscale living spaces and amenities for discerning residents.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-row">
-                                <img src={a4} alt="a4" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />HOUSES - Brooklyn</p>
-                                    <h2>$265</h2>
-                                    <h2>Garden Villa House</h2>
-                                    <p>The Garden Villa House is a charming and spacious residence surrounded by lush greenery, offering a serene and picturesque living environment.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-row">
-                                <img src={a5} alt="a5" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />APARTMENTS - Brooklyn</p>
-                                    <h2>$89,000</h2>
-                                    <h2>Wooden House</h2>
-                                    <p>"A charming wooden house nestled amidst nature, emanating warmth and rustic elegance."</p>
-                                </div>
-                            </div>
-                            <div className="carousel-row">
-                                <img src={a6} alt="a6" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />APARTMENTS - Brooklyn</p>
-                                    <h2>$650,000</h2>
-                                    <h2>One Bedroom Studio</h2>
-                                    <p>A cozy and compact studio apartment with one bedroom, perfect for individuals or couples seeking a comfortable living space.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-row">
-                                <img src={a1} alt="a1" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />APARTMENTS - Manhattan</p>
-                                    <h2>$265</h2>
-                                    <h2>Modern Family Home</h2>
-                                    <p>A modern family home, characterized by sleek architectural design, open floor plans, and a harmonious blend of functionality and aesthetic appeal.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-row">
-                                <img src={a3} alt="a3" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />HOUSES - Queen</p>
-                                    <h2>$550,000</h2>
-                                    <h2>South Side Garden House</h2>
-                                    <p>The South Side Garden House is a charming residential property with a beautiful garden, located on the south side of a town or city.</p>
-                                </div>
-                            </div>
-                            <div className="carousel-row">
-                                <img src={a4} alt="a4" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />HOUSES - Brooklyn</p>
-                                    <h2>$265</h2>
-                                    <h2>East Sunlight Apartment</h2>
-                                    <p>"East Sunlight Apartment is a modern and spacious residential complex offering comfortable living in a vibrant and convenient location."</p>
-                                </div>
-                            </div>
-                            <div className="carousel-row">
-                                <img src={a5} alt="a5" />
-                                <div className='lorm'>
-                                    <p><IoLocationOutline />APARTMENTS - Manhattan</p>
-                                    <h2>$265</h2>
-                                    <h2>Family Mansion</h2>
-                                    <p>A grand and opulent family mansion, adorned with exquisite architecture and luxurious amenities, creating a haven of elegance and comfort.</p>
-                                </div>
-                            </div>
-                        </Slider>
+                        <div className='select1'>
+                            <p className='bestoffer'>BEST OFFERS</p>
+                            <h1 className='find-home'>FIND A HOME THAT SUITS <br />YOUR LIFESTYLE</h1>
+                            <p className='middle-line'>_____________________________________________________________________________________________________________________________________________________</p><br />
+                        </div>
+                        <div className='slider'>
+                            <Slider {...selection} className='carousel-row-container' >
+                                {
+                                    verified && verified.map((item) => (
+                                        <div className="carousel-row-1">
+                                            <div className="image">
+                                                <img src={item.image} alt="a1" />
+                                            </div>
+                                            <div className='lorm'>
+                                                <p><IoLocationOutline />{item.name} - {item.city}</p>
+                                                <h2>₦{item.price}</h2>
+                                                <h2>{item.category}</h2>
+                                                <p>{item.description}</p>
+                                            </div>
+                                        </div>
+                                    ))
+                                }
+                            </Slider>
+                        </div>
                         <p className='middle-line'>_____________________________________________________________________________________________________________________________________________________</p><br /><br /><br />
+                    </div>
+                </div>
+                <div className='rental'>
+                    <div className='rental-most'>
+                        <h1>The Most Rental Listings</h1>
+                        <h3>Choose from over 1 million apartments, houses, condos, and townhomes for rent.</h3>
+                    </div>
 
-                        <div className='rental-most'>
-                            <h1>The Most Rental Listings</h1>
-                            <h3>Choose from over 1 million apartments, houses, condos, and townhomes for rent.</h3>
-                        </div><br /><br /><br />
-
-                        <div className='renting-made-simple'>
-                            <div className='rent-text-side1'>
-                                <h1>Renting Made Simple</h1>
-                                <p>Browse the highest quality listings, apply online, sign your lease, and even pay your rent from any device.</p><br /><br />
-                                <a href="#">Find Out More</a>
-                            </div>
-                            <div className='rent-image'>
-                                <img src={rent} alt="rent" />
-                            </div>
+                    <div className='renting-made-simple'>
+                        <div className='rent-text-side1'>
+                            <h1>Renting Made Simple</h1>
+                            <p>Browse the highest quality listings, apply online, sign your lease, and even pay your rent from any device.</p><br /><br />
+                            <a href="#">Find Out More</a>
                         </div>
-
-                    </div><br /><br /><br />
-                    <div className='discover-new-leaving-container'>
-
-                        <div>
-                            <h1 className='discover-new-way'>DISCOVER A NEW WAY OF LIVING <br /> & ENJOYING YOUR HOME</h1><br /><br />
-                            <h3 className='discover-new-leaving'>WHAT MATERIAL ARE USED?</h3><br />
-                            <h3 className='discover-new-leaving'>HOW TO BUY?</h3><br />
-                            <h3 className='discover-new-leaving'>DO YOU OFFER INTERNAL-FREE PLAN?</h3><br />
+                        <div className='rent-image'>
+                            <img src={rent} alt="rent" />
                         </div>
-                        <div>
-                            <img src={dual1} alt="dual1" className='dual1' />
-                            <div className='dual2'>
-                                <img src={dual2} alt="dual2" />
-                            </div>
+                    </div>
+                </div>
+                <div className='discover-new-leaving-container'>
+                    <div>
+                        <h1 className='discover-new-way'>DISCOVER A NEW WAY OF LIVING <br /> & ENJOYING YOUR HOME</h1><br /><br />
+                        <h3 className='discover-new-leaving'>WHAT MATERIAL ARE USED?</h3><br />
+                        <h3 className='discover-new-leaving'>HOW TO BUY?</h3><br />
+                        <h3 className='discover-new-leaving'>DO YOU OFFER INTERNAL-FREE PLAN?</h3><br />
+                    </div>
+                    <div>
+                        <img src={dual1} alt="dual1" className='dual1' />
+                        <div className='dual2'>
+                            <img src={dual2} alt="dual2" />
                         </div>
-
-
                     </div>
                 </div>
                 <div className='image-section'>

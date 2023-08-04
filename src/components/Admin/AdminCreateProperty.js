@@ -1,9 +1,13 @@
+import { useParams } from "react-router-dom";
 import "./Admin.css";
 import AdminNavigation from "./AdminNavigation";
 import AdminSidebar from "./AdminSidebar";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 function AdminCreateProduct() {
+    const { id } = useParams();
+
+
     const [name, setName] = useState("");
     const [price, setPrice] = useState("");
     const [country, setCountry] = useState("");
@@ -20,28 +24,59 @@ function AdminCreateProduct() {
     const [type, setType] = useState("");
     const [bedroom, setBedroom] = useState("");
     const [bathroom, setBathroom] = useState("");
-    const [toilet, setToilet] = useState("");
-    const [parking_space, setParkingSpace] = useState("");
-    const [furnish, setFurnish] = useState("");
-    const [disclaimer, setDisclaimer] = useState("");
-    const [amenities_bedroom, setAmenitiesBedroom] = useState("");
-    const [amenities_toilet, setAmenitiesToilet] = useState("");
-    const [amenities_gym, setAmenitiesGym] = useState("");
-    const [amenities_wifi, setAmenitiesWifi] = useState("");
-    const [amenities_water, setAmenitiesWater] = useState("");
-    const [amenities_AirCondition, setAmenitiesaircondition] = useState("");
-    const [amenities_floor, setAmenitiesfloor] = useState("");
-    const [amenities_fence, setAmenitiesfence] = useState("");
-    const [amenities_garge, setAmenitiesgarge] = useState("");
-    const [amenities_elevator, setAmenitieselevator] = useState("");
-    const [amenities_renovation, setAmenitiesrenovation] = useState("");
-    const [amenities_security, setAmenitiessecurity] = useState("");
-    const [amenities_heating, setAmenitiesheating] = useState("");
-    const [err, setErr] = useState(false);
+    const [toilet, setToilet] = useState('')
+    const [parking_space, setParkingSpace] = useState('')
+    const [furnishing, setFurnishing] = useState('')
+    const [disclaimer, setDisclaimer] = useState('')
+    const [amenities, setAmenities] = useState('')
+    const [err, setErr] = useState(false)
+
+    let getToken = localStorage.getItem("merchantToken");
+    // console.log(getToken);
+
+    useEffect(() => {
+        fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`, {
+            method: "GET",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken}`
+            },
+        })
+            .then((resp) => resp.json())
+            .then((output) => {
+                setName(output.name);
+                setPrice(output.price);
+                setCountry(output.country);
+                setState(output.state);
+                setCity(output.city);
+                setLat(output.lat);
+                setLng(output.lng);
+                setAddress(output.address);
+                setDescription(output.description);
+                setCategory(output.category);
+                setTotalarea(output.total_area);
+                setPropertyUse(output.property_use);
+                setPaymentPlan(output.payment_plan);
+                setType(output.type);
+                setBedroom(output.bedroom);
+                setBathroom(output.bathroom);
+                setToilet(output.toilet);
+                setParkingSpace(output.parking_space);
+                setFurnishing(output.furnishing);
+                setDisclaimer(output.disclaimer);
+                setAmenities(output.amenities);
+
+                console.log(output);
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
+    }, []);
+
 
     const handleCreate = (e) => {
         e.preventDefault();
-        if (name === "" || price === "" || country === "" || state === "" || city === "" || lat === "" || lng === "" || address === "" || description === "" || total_area === "" || property_use === "" || payment_plan === "" || type === "" || bedroom === "" || bathroom === "" || toilet === "" || parking_space === "" || furnish === "" || disclaimer === "" || amenities_bedroom === "" || amenities_toilet === "" || amenities_gym === "" || amenities_wifi === "" || amenities_water === "" || amenities_AirCondition === "" || amenities_floor === "" || amenities_fence === "" || amenities_garge === "" || amenities_elevator === "" || amenities_renovation === "" || amenities_security === "" || amenities_heating === "" ) {
+        if (name === "" || price === "" || country === "" || state === "" || city === "" || lat === "" || lng === "" || address === "" || description === "" || category === "" || total_area === "" || property_use === "" || payment_plan === "" || type === "" || bedroom === "" || bathroom === "" || toilet === "" || parking_space === "" || furnishing === "" || disclaimer === "" || amenities === "") {
             setErr(true);
             return;
         }
@@ -56,41 +91,38 @@ function AdminCreateProduct() {
             lng: lng,
             address: address,
             description: description,
-            total_area:total_area,
-            property_use:property_use,
-            payment_plan:payment_plan,
-            type:type,
-            bedroom:bedroom,
-            bathroom:bathroom,
-            toilet:toilet,
-            parking_space:parking_space,
-            furnish:furnish,
-            disclaimer:disclaimer,
-            amenities_bedroom:amenities_bedroom,
-            amenities_toilet:amenities_toilet,
-            amenities_gym:amenities_gym,
-            amenities_wifi:amenities_wifi,
-            amenities_water:amenities_water,
-           
-            // quantity: quantity,
-            date: new Date().toLocaleString(),
+            total_area: total_area,
+            property_use: property_use,
+            payment_plan: payment_plan,
+            type: type,
+            bedroom: bedroom,
+            bathroom: bathroom,
+            toilet: toilet,
+            parking_space: parking_space,
+            furnishing: furnishing,
+            disclaimer: disclaimer,
+            amenities: amenities,
         };
-        // fetch("http://159.65.21.42:9000/create/product", {
-        //     method: "POST",
-        //     headers: { "Content-Type": "Application/json" },
-        //     body: JSON.stringify(product),
-        // })
-        //     .then((resp) => resp.json())
-        //     .then((data) => {
-        //         alert("Product Created");
-        //         console.log(data);
-        //     })
-        //     .catch((err) => console.log(err));
+
+        fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`, {
+            method: "PUT",
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': `Bearer ${getToken}`
+            },
+            body: JSON.stringify(adminProperty),
+        })
+            .then((resp) => resp.json())
+            .then((output) => {
+                alert("Property updated successfully");
+                console.log(output);
+            })
+            .catch((err) => {
+                console.log(err.message)
+            })
+
     };
 
-
-
-    
 
     return (
         <div>
@@ -153,27 +185,24 @@ function AdminCreateProduct() {
                                 {err && address === "" ? <span>Address Required</span> : null}
                             </div>
 
-                           
+
 
                             <div className="admin-form-group">
                                 <label htmlFor="">Category</label>
                                 <select value={category} onChange={(e) => setCategory(e.target.value)}>
                                     <option value="">Select Category</option>
-                                    <option value="flat">Flat</option>
-                                    <option value="studioapartment">Studio Apartment</option>
-                                    <option value="duplexapartment">Duplex Apartment</option>
-                                    <option value="basementapartment">Basement Apartment</option>
-                                    <option value="triplex apartment">Triplex Apartment</option>
-                                    <option value="Luxuryapartment">Luxury Apartment</option>
-                                    <option value="floorthrough">Floor Through</option>
-                                    <option value="penhouseapartment">Penhouse Apartment</option>
+                                    <option value="flat">FLAT</option>
+                                    <option value="studioapartment">APARTMENT</option>
+                                    <option value="duplexapartment">DUPLEX</option>
+                                    <option value="basementapartment">WAREHOUSE</option>
+                                    <option value="triplex apartment">SHOP</option>
                                 </select>
                                 {err && category === "" ? <span>Category Required</span> : null}
                             </div>
 
                             <div className="admin-form-group">
                                 <label htmlFor="">Total Area</label>
-                                <input type="number" value={total_area} onChange={(e) => setTotalarea(e.target.value)} />
+                                <input type="text" value={total_area} onChange={(e) => setTotalarea(e.target.value)} />
                                 {err && total_area === "" ? <span>Total Area Required</span> : null}
                             </div>
 
@@ -181,8 +210,8 @@ function AdminCreateProduct() {
                                 <label htmlFor="">Property use</label>
                                 <select value={property_use} onChange={(e) => setPropertyUse(e.target.value)}>
                                     <option value="">Select Property Use</option>
-                                    <option value="business">Business</option>
-                                    <option value="residential">Residential</option>
+                                    <option value="business">RESIDENTIAL</option>
+                                    <option value="residential">COMMERCIAL</option>
                                 </select>
                                 {err && property_use === "" ? <span>Property use Required</span> : null}
                             </div>
@@ -192,8 +221,10 @@ function AdminCreateProduct() {
                                 <label htmlFor="">Payment Plan</label>
                                 <select value={payment_plan} onChange={(e) => setPaymentPlan(e.target.value)}>
                                     <option value="">Select Payment Plan</option>
-                                    <option value="per_month">Per_Month</option>
-                                    <option value="per_annum">per_Annum</option>
+                                    <option value="PER_ANNUM">PER_ANNUM</option>
+                                    <option value="MONTHLY">MONTHLY</option>
+                                    <option value="PER_PLOT">PER_PLOT</option>
+                                    <option value="PER_DAY">PER_DAY</option>
                                 </select>
                                 {err && payment_plan === "" ? <span>Payment Plan Required</span> : null}
                             </div>
@@ -202,8 +233,9 @@ function AdminCreateProduct() {
                                 <label htmlFor="">Type</label>
                                 <select value={type} onChange={(e) => setType(e.target.value)}>
                                     <option value="">Select Type</option>
-                                    <option value="sell">Sell</option>
-                                    <option value="buy">Buy</option>
+                                    <option value="RENT">RENT</option>
+                                    <option value="LEASE">LEASE</option>
+                                    <option value="SALES">SALES</option>
                                 </select>
                                 {err && type === "" ? <span>Type Required</span> : null}
                             </div>
@@ -245,101 +277,35 @@ function AdminCreateProduct() {
                                 </select>
                                 {err && parking_space === "" ? <span>Parking Space Required</span> : null}
                             </div>
+                            <div className="admin-form-group">
+                                <label htmlFor="">Type</label>
+                                <select value={furnishing} onChange={(e) => setFurnishing(e.target.value)}>
+                                    <option value="">Property Status</option>
+                                    <option value="FURNISHING">FURNISHED</option>
+                                    <option value="UNFURNISHED">UNFURNISHED</option>
+                                </select>
+                                {err && type === "" ? <span>Type Required</span> : null}
+                            </div>
 
                             <div className="admin-form-group">
                                 <label htmlFor="">Description</label>
                                 <textarea value={description} onChange={(e) => setDescription(e.target.value)}></textarea>
                                 {err && description === "" ? <span>Description Required</span> : null}
                             </div>
+                            <div className="admin-form-group">
+                                <label htmlFor="">Disclaimer</label>
+                                <textarea value={disclaimer} onChange={(e) => setDisclaimer(e.target.value)}></textarea>
+                                {err && disclaimer === "" ? <span>Disclaimer Required</span> : null}
                             </div>
+                            <div className="admin-form-group">
+                                <label htmlFor="">Amenities</label>
+                                <input type="text" value={amenities} onChange={(e) => setAmenities(e.target.value)} />
+                                {err && amenities === "" ? <span>Amenities Required</span> : null}
+                            </div>
+                        </div>
+                        <button>Update Property</button>
 
-
-                            <div className="Amenities">
-                                    <div className="Container">
-                                        <div className="col">
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Air Condition</p>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Floor</p>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Heating</p>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Renovation</p>
-                                            </div>
-                                           
-                                        </div>
-                                        <div className="col">
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Cable TV</p>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Elevator</p>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Furnishing</p>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Intercom</p>
-                                            </div>
-                                            
-                                        </div>
-                                        <div className="col">
-                        
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Fence</p>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Garage</p>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Parking</p>
-                                            </div>
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Swimming Pool</p>
-                                            </div>
-                                        </div>
-                                        <div className="col">
-                                    
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Garden</p>
-                                            </div>
-                                        
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>WiFi</p>
-                                            </div>
-
-                                            <div>
-                                                <input type="checkbox" />
-                                                <p>Security</p>
-                                            </div>
-                                        </div>
-                                    </div>
-                            
-                                    
-                            <button>Create Property</button>
-                                </div>
-                       
                     </form>
-
-
-
                 </div>
             </div>
         </div>

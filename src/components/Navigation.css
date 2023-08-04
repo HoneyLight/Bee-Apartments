@@ -15,7 +15,9 @@
     align-items: center;
     /* position: fixed; */
 }
-
+.main-navigation .nav-link{
+    text-decoration: none;
+}
 .main-navigation li {
     list-style: none;
     color: white;
@@ -41,4 +43,17 @@
     width: 100%;
     /* margin-left: 40px; */
     /* position: relative; */
+}
+.dropdown-menu{
+    background-color: #AC835D;
+    position: absolute;
+    top: 63%;
+    width: 200px;
+    height: 200px;
+
+}
+.dropdown-link{
+    text-decoration: none;
+    color: white;
+    font-size: 16px;
 }

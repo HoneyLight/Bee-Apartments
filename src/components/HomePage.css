@@ -118,7 +118,7 @@
 
 .modern-space-container {
     background-color: #181D24;
-    height: 800px;
+    height: 600px;
 
 }
 
@@ -154,38 +154,44 @@
     width: 70%;
     margin-top: 40px;
     margin-left: 90px;
-
 }
-
 .selection-container {
+    height: 700px;
     background-color: #181D24;
-    height: 2000px;
-    margin-top: -150px;
-
 }
-
 .selection-carousel-container {
+    height: 600px;
     width: 90%;
     margin: auto;
     margin-left: 60px;
 }
-
+.select1{
+height: 20%;
+}
+.slider{
+    height: 90%;
+    padding-top: 20px;
+    /* border: 1px solid white; */
+}
+.carousel-row-1{
+    height: 100%;
+}
+.carousel-row-1 .image{
+    height: 70%;
+} 
+.carousel-row-1 .image img{
+    height: 90%;
+}
 .selection-carousel-container img {
     width: 95%;
     border-top-left-radius: 10px;
     border-top-right-radius: 10px;
-
 }
 
-.carousel-row {
-    margin-bottom: 10px;
-}
-
-.lorm {
+.carousel-row-1 .lorm {
+    height: 30%;
     background-color: #F9F1EC;
-    height: 200px;
     width: 95%;
-    column-gap: 10px;
     line-height: 1.7;
 
 }
@@ -193,53 +199,43 @@
     margin-left: 10px;
 }
 
-.carousel-row-container {
-    column-gap: 10px;
-}
-
-.bestoffer {
-    color: #F9F1EC;
-    margin-bottom: 10px;
-}
-
-.find-home {
-    color: #C6976D;
-}
 
 .middle-line {
     color: #4A4847;
+}
+
+/* rental */
+.rental{
+    padding: 3rem;
+    background-color: #181D24;
 }
 
 .rental-most {
     text-align: center;
     align-items: center;
     color: #C6976D;
+    margin-bottom: 2rem;
 }
 
 .renting-made-simple {
-    display: flex;
-    margin-bottom: 20px;
-}
-
-.rent-image img {
-    width: 700px;
     height: 300px;
-    /* margin-left: 90px; */
-
+    display: flex;
+    justify-content: center;
+    /* margin-bottom: 20px; */
 }
-
+.rent-image img {
+    height: 100%;
+}
 .rent-text-side1 {
     background-color: #F9F1EC;
-    height: 300px;
+    padding-top: 10px;
     width: 500px;
-
+    text-align: center;   
 }
-
 .rent-text-side1 h1 {
     text-align: center;
     margin-top: 20px;
 }
-
 .rent-text-side1 p {
     margin-top: 10px;
     margin-left: 10px;
@@ -247,21 +243,27 @@
 }
 
 .rent-text-side1 a {
-    text-align: center;
-    padding-top: 10px;
-    margin-top: 20px;
-    margin-left: 10px;
-    font-size: 19px;
-    align-items: center;
-    margin-left: 200px;
-
+    color: black;  
+    text-decoration: none;
+    /* margin-top: 3rem; */
+}
+.rent-text-side1 a:hover{
+    text-decoration: underline;
 }
 .discover-new-leaving-container{
     display: flex;
     width: 95%;
     margin: auto;
     justify-content: space-between;
+    
+}
+.bestoffer {
+    color: #F9F1EC;
+    margin-bottom: 10px;
+}
 
+.find-home {
+    color: #C6976D;
 }
 .discover-new-leaving{
     border: 1px solid #AC835D;
