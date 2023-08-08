@@ -11,6 +11,35 @@ function Property() {
     const [comments, setComments] = useState("");
     const { id } = useParams();
     const [property, setProperty] = useState([]);
+    const [username, setUsername] = useState("");
+    const [useremail, setUseremail] = useState("");
+    const [date, setDate] = useState("");
+    const [timer1, setTimer1] = useState("");
+    const [timer2, setTimer2] = useState("");
+    const [message, setMessage] = useState("");
+    const [err, setErr] = useState(false)
+
+    let user_Id = localStorage.getItem("user_id");
+    
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        if(username === "" || useremail === "" || message === "" || date === "" || timer1 === "" || timer2 === "") {
+            setErr(true);
+            return;
+        }
+    }
+    
+
+    let userBooking = {
+        property_id: id,
+        user_id: user_Id,
+        date: date,
+        msg: message,
+        time: {
+            from: timer1,
+            to: timer2,
+        },
+    };
 
     let getToken = localStorage.getItem("merchantToken")
 
@@ -18,6 +47,7 @@ function Property() {
         fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`, {
             method: "GET",
             headers: { "Content-Type": "application/json", "authorization": `Bearer ${getToken}` },
+
         })
             .then((resp) => resp.json())
             .then((data) => {
@@ -235,8 +265,8 @@ function Property() {
                         <div className="agent">
                             <div className="agent-details">
                                 <p>NEW HOME</p>
-                                <h3>Jahnedu Ibekwelu</h3>
-                                <p>25 Columbia Heights, Brooklyn, New York</p>
+                                <h3>{property.agent?.full_name}</h3>
+                                <p>{property.agent?.company}</p>
 
                             </div>
                             <div className="agent-numbers">
@@ -247,34 +277,40 @@ function Property() {
                                     <p>Email</p>
                                 </div>
                                 <div>
-                                    <p>+234810937263</p>
-                                    <p>+234810937263</p>
-                                    <p>+234810937263</p>
-                                    <p>someone@gmail.com</p>
+                                <p>{property.agent?.primary_phone}</p>
+                                    <p>{property.agent?.phones}</p>
+                                    <p>{property.agent?.primary_phone}</p>
+                                    <p>{property.agent?.email}</p>
                                 </div>
                             </div>
                             <button>View my properties</button>
                         </div>
                         <div className="schedule-tour">
                             <div className="schedule-details">
-                                <h3>Schedule tour</h3>
-                                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Obcaecati iure maxime pariatur quisquam animi eos facilis dolorem, vitae quod error iste nemo sunt illo nihil dolores. Aperiam omnis ea quidem!</p>
-                                <form action="" className="enquiry-form">
+                                <h3>Schedule Appointment</h3>
+                                <p>Book an Appointment with us</p>
+                                <form action="" className="enquiry-form" onSubmit={handleSubmit}>
                                     <div>
                                         <input type="text" placeholder="Full name" />
+                                        {err && username === "" ? <span>Name is required</span> : null}
                                     </div>
                                     <div>
                                         <input type="text" placeholder="Email Address" />
+                                        {err && useremail === "" ? <span>Email is required</span> : null}
                                     </div>
-
+                                   
                                     <div>
-                                        <input type="phone number" placeholder="Phone Number" />
+                                        <input type="date" placeholder="Select Date" />
+                                        {err && date === "" ? <span>Date is required</span> : null}
                                     </div>
-
                                     <div>
-                                        <input type="text" placeholder="Name of Property" />
+                                        <input type="time" placeholder="Select Time" />
+                                        {err && timer1 === "" ? <span>kindly select a time</span> : null}
                                     </div>
-
+                                    <div>
+                                        <input type="time" placeholder="Select Time" />
+                                        {err && timer2 === "" ? <span>kindly select a time</span> : null}
+                                    </div>
                                     <div>
                                         <select name="" id="">
                                             <option value="">Select Time</option>
@@ -284,6 +320,7 @@ function Property() {
                                             <option value="">1:00pm</option>
                                             <option value="">2:00pm</option>
                                         </select>
+                                        {err && useremail === "" ? <span>Email is required</span> : null}
                                     </div>
 
                                     <div>

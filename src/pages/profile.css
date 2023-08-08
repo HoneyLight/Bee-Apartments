@@ -1,0 +1,118 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+.profile{
+ display: flex;
+    text-align: center;
+    width: auto;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+   
+  .profile .main-profile{
+    background-color: rgb(31, 30, 30);
+    margin: 5px;
+    margin-bottom: 60px;
+    width: 410px;
+    color: white;
+    position: relative;
+    margin-left: 1%;
+    height: 600px;
+    margin-top: 10%;
+  
+  }
+  .profile .main-profile h3{
+    margin-top: 50px;
+    font-size: 7rem;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+  
+  .profile .main-profile p{
+    font-size: 20px;
+    margin: 12px 0;
+    line-height: 1.5;
+    text-align: left;
+    margin-left: 5%;
+    margin-bottom: 40px;
+  }
+
+  #side{
+    background: #AC835D;
+    width: 17%;
+    height: 70%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    min-height: 100vh;
+  }
+  
+  #side .sides{
+    margin-top: 40px;
+  }
+  
+  #side .sides  a{
+ 
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 20px 14px;
+    border: none;
+    outline: none;
+    display: inline-block;
+    color: white;
+    font-size: 15px;
+    width: 50%;
+    text-decoration: none;
+    display: inline;
+   }
+   
+  #side .sides  button{
+ 
+   border-radius: 5px;
+   cursor: pointer;
+   padding: 20px 14px;
+   border: none;
+   outline: none;
+   display: inline-block;
+   color: white;
+   font-size: 15px;
+   width: 60%;
+   text-decoration: none;
+   margin-top: 15%;
+   background-color: white;
+   color: #AC835D;
+  }
+
+  #side .sides  .button{
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 20px 14px;
+    border: none;
+    outline: none;
+    display: inline-block;
+    color: white;
+    font-size: 15px;
+    width: 50%;
+    text-decoration: none;
+    margin-left: 4%;
+    margin-top: 150%;
+    background-color: none;
+    color: #AC835D;
+   }
+   
+  .items .link{
+    text-decoration: none;
+    color: white;
+    font-weight: 300px;
+    transition: 0.3 ease;
+    display: block;
+    margin-bottom: 10px;
+    align-items: center;
+    text-align: center;
+    font-size: 1.3rem;
+    margin-left: 4%;
+    margin-top: -2px;
+  }

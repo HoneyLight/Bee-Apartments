@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 function AdminDashboard() {
     const [agent, setAgent] = useState([]);
     const [verified, setVerified]= useState("");
-    const [wishlist, setWishlist] = useState("");
+    const [wishlist, setWishlist] = useState([]);
     const merchant_id = localStorage.getItem("merchant_id");
     const getToken = localStorage.getItem("merchantToken");
     const [user, setUser] = useState([]);
@@ -105,7 +105,7 @@ function AdminDashboard() {
                             </div>
                             <div>
                                 <h5>Items in Wishlist</h5>
-                                <h4>0</h4>
+                                <h4>{wishlist.length}</h4>
                             </div>
                         </div>
                         <div className="box flex">

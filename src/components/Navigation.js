@@ -11,8 +11,8 @@ function Navigation() {
             <div className="Navigation-container">
                 <ul className='main-navigation'>
                  
-                    <li><img src={bg} alt="logo" /></li>
-                    <li>HOME</li>
+                    <Link to="/"><li><img src={bg} alt="logo" /></li></Link>
+                    <Link to="/"><li>HOME</li></Link>
                     <li>PAGES</li>
                     <Link to="/Shop" className='nav-link'>
                         <li>PROPERTY</li>
@@ -21,7 +21,7 @@ function Navigation() {
                     <Link to='/AppointmentStatus' className='nav-link'>
                     <li>APARTMENTS</li>
                     </Link>
-                    <li>BLOG</li>
+                    <Link to="/profile"><li>profile</li></Link>
                     <li><IoCall className='call-icon' /> CALL +234 906 3438 923</li>
                    
                    <li onClick={() => setIsDropdownOpen(!isDropdownOpen)}><button>REGISTER</button>

@@ -15,6 +15,8 @@ import Editpro from "./components/Agent/Editpro";
 import Appointment from "./components/Agent/Appointment";
 import Property from "./pages/Property";
 import AppointmentStatus from "./pages/AppointmentStatus";
+import Wishlist from "./pages/Wishlist";
+import Profile from "./pages/Profile";
 // new
 import AdminLogin from "./components/Admin/AdminLogin";
 import AdminDashboard from "./components/Admin/AdminDashboard"
@@ -26,7 +28,6 @@ import AdminUserView from "./components/Admin/AdminUserView";
 import AdminAgentView from "./components/Admin/AdminAgentView";
 import AdminCreateAgent from "./components/Admin/AdminCreateAgent";
 import AdminCreateAdmin from "./components/Admin/AdminCreateAdmin";
-import Wishlist from "./pages/Wishlist";
 import AdminWishlist from "./components/Admin/AdminWishlist";
 
 
@@ -50,6 +51,7 @@ function App() {
         <Route path="/Appointment" element={<Appointment />} />
         <Route path="/AppointmentStatus" element={<AppointmentStatus />} />
         <Route path="/wishlist" element={<Wishlist />} />
+        <Route path="/profile" element={<Profile />} />
         {/* new */}
         <Route path='/admin' element={<AdminDashboard />} />
         <Route path='/admin-login' element={<AdminLogin />} />

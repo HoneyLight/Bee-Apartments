@@ -6,11 +6,11 @@ import Navigation from "../components/Navigation";
 function Wishlist() {
     const [property, setProperty] = useState()
     const user_id = localStorage.getItem("user_id");
-    const getToken = localStorage.getItem("merchantToken");
+    const userToken = localStorage.getItem("userToken");
 
     const getWishlist = () => {
         fetch(`http://property.reworkstaging.name.ng/v1/users/${user_id}/wishlist`, {
-            headers: { "Authorization": `Bearer ${getToken}` },
+            headers: { "Authorization": `Bearer ${userToken}` },
         })
             .then((resp) => resp.json())
             .then((data) => {
