@@ -13,6 +13,7 @@ function Property() {
     const [property, setProperty] = useState([]);
     const [username, setUsername] = useState("");
     const [useremail, setUseremail] = useState("");
+    const [phone, setPhone] = useState("");
     const [date, setDate] = useState("");
     const [timer1, setTimer1] = useState("");
     const [timer2, setTimer2] = useState("");
@@ -20,28 +21,43 @@ function Property() {
     const [err, setErr] = useState(false)
 
     let user_Id = localStorage.getItem("user_id");
+    let userToken = localStorage.getItem("userToken")
+    let getToken = localStorage.getItem("merchantToken")
     
     const handleSubmit = (e) => {
         e.preventDefault();
-        if(username === "" || useremail === "" || message === "" || date === "" || timer1 === "" || timer2 === "") {
+        if(message === "" || date === "" || timer1 === "" || timer2 === "") {
             setErr(true);
             return;
         }
+        let userBooking = {
+            property_id: id,
+            user_id: user_Id,
+            date: date,
+            msg: message,
+            time: {
+                from: timer1,
+                to: timer2,
+            },
+    
+        };
+        console.log(userBooking)
+        fetch(`http://property.reworkstaging.name.ng/v1/appointments`, {
+            method: "POST",
+            headers: {"Content-Type": "Application/json", "Authorization": `Bearer ${userToken}`},
+            body: JSON.stringify(userBooking),
+        }).then((resp) => resp.json())
+        .then((data) => {
+            alert("Appointment booked successfully")
+            console.log(data);
+        }).catch((err) => {
+            console.log(err.message)
+        })
     }
     
 
-    let userBooking = {
-        property_id: id,
-        user_id: user_Id,
-        date: date,
-        msg: message,
-        time: {
-            from: timer1,
-            to: timer2,
-        },
-    };
 
-    let getToken = localStorage.getItem("merchantToken")
+
 
     const getProperty = () => {
         fetch(`http://property.reworkstaging.name.ng/v1/properties/${id}`, {
@@ -97,7 +113,6 @@ function Property() {
     };
 
     // REviews
-    let userToken = localStorage.getItem("userToken")
 
     useEffect(() => {
         fetch(
@@ -116,7 +131,7 @@ function Property() {
             });
     }, []);
 
-   
+
 
     return (
         <div>
@@ -290,60 +305,25 @@ function Property() {
                                 <h3>Schedule Appointment</h3>
                                 <p>Book an Appointment with us</p>
                                 <form action="" className="enquiry-form" onSubmit={handleSubmit}>
-                                    <div>
-                                        <input type="text" placeholder="Full name" />
-                                        {err && username === "" ? <span>Name is required</span> : null}
-                                    </div>
-                                    <div>
-                                        <input type="text" placeholder="Email Address" />
-                                        {err && useremail === "" ? <span>Email is required</span> : null}
-                                    </div>
+                                             
                                    
                                     <div>
-                                        <input type="date" placeholder="Select Date" />
-                                        {err && date === "" ? <span>Date is required</span> : null}
+                                        <input type="date" placeholder="Select Date" onChange={(e)=> setDate(e.target.value)} value={date} />
+                                        {err == true && date === "" ? <span>Date is required</span> : null}
                                     </div>
                                     <div>
-                                        <input type="time" placeholder="Select Time" />
-                                        {err && timer1 === "" ? <span>kindly select a time</span> : null}
+                                        <textarea name="" placeholder="Message" cols="30" rows="5" onChange={(e)=> setMessage(e.target.value) } value={message}></textarea>
+                                        {err == true & message === "" ? <span>Message required</span> : null}
                                     </div>
                                     <div>
-                                        <input type="time" placeholder="Select Time" />
-                                        {err && timer2 === "" ? <span>kindly select a time</span> : null}
+                                        <input type="time" placeholder="Select Time" onChange={(e)=> setTimer1(e.target.value)} value={timer1}/>
+                                        {err == true && timer1 === "" ? <span>kindly select a time</span> : null}
                                     </div>
                                     <div>
-                                        <select name="" id="">
-                                            <option value="">Select Time</option>
-                                            <option value="">8:00am</option>
-                                            <option value="">10:00am</option>
-                                            <option value="">11:00am</option>
-                                            <option value="">1:00pm</option>
-                                            <option value="">2:00pm</option>
-                                        </select>
-                                        {err && useremail === "" ? <span>Email is required</span> : null}
+                                        <input type="time" placeholder="Select Time" onChange={(e)=> setTimer2(e.target.value)} value={timer2}/>
+                                        {err == true && timer2 === "" ? <span>kindly select a time</span> : null}
                                     </div>
-
-                                    <div>
-                                        <select name="" id="">
-                                            <option value="">Select Location</option>
-                                            <option value=""></option>
-                                            <option value="">10:00am</option>
-                                            <option value="">11:00am</option>
-                                            <option value="">1:00pm</option>
-                                            <option value="">2:00pm</option>
-                                        </select>
-                                    </div>
-                                    <div>
-                                        <select name="" id="">
-                                            <option value="">Select Rent/Buy</option>
-                                            <option value="">Rent</option>
-                                            <option value="">Buy</option>
-                                        </select>
-                                    </div>
-
-                                    <div>
-                                        <textarea name="" placeholder="Message" cols="30" rows="5"></textarea>
-                                    </div>
+                         
                                     <button>Make Enquiry</button>
                                 </form>
                             </div>

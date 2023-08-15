@@ -29,6 +29,7 @@ import AdminAgentView from "./components/Admin/AdminAgentView";
 import AdminCreateAgent from "./components/Admin/AdminCreateAgent";
 import AdminCreateAdmin from "./components/Admin/AdminCreateAdmin";
 import AdminWishlist from "./components/Admin/AdminWishlist";
+import AdminAppointment from "./components/Admin/AdminAppointment";
 
 
 
@@ -64,6 +65,7 @@ function App() {
         <Route path="/admin-agent-view" element={<AdminAgentView />} />
         <Route path="/admincreateadmin" element={<AdminCreateAdmin />} />
         <Route path="/admin-wishlist" element={<AdminWishlist />} />
+        <Route path="/admin-appointment" element={<AdminAppointment />} />
 
 
 

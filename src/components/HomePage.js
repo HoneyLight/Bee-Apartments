@@ -253,7 +253,12 @@ function HomePage() {
                     </div>
                 </div>
                 <div className='image-section'>
-                    <img src={a5} alt="a5" />
+                    {verified && verified.map((item) => (
+                        <Link to={`/Shop/${item.id}`}>
+                            <img src={item.image} alt="a5" />
+                        </Link>
+                    ))
+                    }
                 </div>
                 <div className='contactUS'>
                     <div className='contact-us-container'><br /><br /><br /><br /><br /><br />
